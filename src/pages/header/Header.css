@@ -39,3 +39,8 @@
   background-color: white;
   color: rgb(65, 65, 65);
 }
+
+.second-row-container {
+  display: flex;
+  flex-direction: row;
+}

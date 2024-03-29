@@ -4,6 +4,7 @@ import { Button } from "semantic-ui-react";
 import GeolocationIcon from "../../icons/geolocation";
 import PersonFill from "../../icons/personFill";
 import ShoppingCar from "../../icons/shoppingCar";
+import MenuBar from "../../components/menuBar/MenuBar";
 
 function Header() {
   return (
@@ -29,7 +30,9 @@ function Header() {
             <ShoppingCar />
           </Button>
         </div>
-        <div className="second-row-container"></div>
+        <div className="second-row-container">
+            <MenuBar />
+        </div>
       </div>
     </header>
   );
