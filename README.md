@@ -13,3 +13,4 @@ npm run dev
 # dependecies
 
 npm install -D sass
+npm install semantic-ui
