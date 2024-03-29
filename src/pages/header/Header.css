@@ -1,0 +1,20 @@
+.header-body {
+  height: 15vh;
+  background-color: tomato;
+}
+
+.container-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem 0 2rem;
+  max-width: 100%;
+  min-width: 100vw;
+}
+
+.first-row-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
