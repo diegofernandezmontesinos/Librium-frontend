@@ -18,10 +18,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-
 }
 article {
     width: 33vw;
     height: 20vh;
+    
 }
