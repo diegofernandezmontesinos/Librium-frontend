@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./MenuBar.css";
 import { MenuMenu, MenuItem, Input, Menu } from "semantic-ui-react";
 
 export default class MenuBar extends Component {
@@ -8,27 +9,53 @@ export default class MenuBar extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Menu secondary>
+      <Menu secondary className="menuContainer">
         <MenuItem
-          name="home"
-          active={activeItem === "home"}
+          className="item"
+          name="Top Seller"
+          active={activeItem === "topSeller"}
           //  onClick={this.handleItemClick}
         />
         <MenuItem
-          name="messages"
-          active={activeItem === "messages"}
+          className="item"
+          name="Fiction"
+          active={activeItem === "fiction"}
           //  onClick={this.handleItemClick}
         />
         <MenuItem
-          name="friends"
-          active={activeItem === "friends"}
+          className="item"
+          name="Kids"
+          active={activeItem === "kids"}
           //  onClick={this.handleItemClick}
         />
-        <MenuMenu position="right">
-          <MenuItem>
-            <Input icon="search" placeholder="Search..." />
-          </MenuItem>
+        <MenuItem
+          className="item"
+          name="Spanish books"
+          active={activeItem === "spanishBooks"}
+          //  onClick={this.handleItemClick}
+        />
+        <MenuItem
+          className="item"
+          name="eBooks"
+          active={activeItem === "ebooks"}
+          //  onClick={this.handleItemClick}
+        />
+        <MenuItem
+          className="item"
+          name="Oferts"
+          active={activeItem === "oferts"}
+          //  onClick={this.handleItemClick}
+        />
+        <MenuItem
+          className="item"
+          name="Technical books"
+          active={activeItem === "technicalBooks"}
+          //  onClick={this.handleItemClick}
+        />
+        <MenuMenu position="right" className="rightContainer">
+          <Input icon="search" placeholder="Search..." />
           <MenuItem
+            className="item"
             name="logout"
             active={activeItem === "logout"}
             //  onClick={this.handleItemClick}

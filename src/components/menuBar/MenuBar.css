@@ -1,0 +1,21 @@
+.menuContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  align-content: center !important;
+  justify-content: space-between !important;
+  width: auto !important;
+  gap: 50px !important;
+}
+
+.rightContainer {
+  width: 10vw !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 10px !important;
+}
+
+.item {
+  min-width: 5vw !important;
+  width: auto !important;
+  cursor: pointer;
+}

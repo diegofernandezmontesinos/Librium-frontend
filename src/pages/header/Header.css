@@ -1,6 +1,6 @@
 .header-body {
   height: 15vh;
-  background-color: tomato;
+  color: black;
 }
 
 .container-body {
@@ -43,4 +43,5 @@
 .second-row-container {
   display: flex;
   flex-direction: row;
+  margin-top: 1vh;
 }
