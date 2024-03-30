@@ -42,8 +42,8 @@ export default class MenuBar extends Component {
         />
         <MenuItem
           className="item"
-          name="Oferts"
-          active={activeItem === "oferts"}
+          name="Offerts"
+          active={activeItem === "offerts"}
           //  onClick={this.handleItemClick}
         />
         <MenuItem
@@ -52,15 +52,6 @@ export default class MenuBar extends Component {
           active={activeItem === "technicalBooks"}
           //  onClick={this.handleItemClick}
         />
-        <MenuMenu position="right" className="rightContainer">
-          <Input icon="search" placeholder="Search..." />
-          <MenuItem
-            className="item"
-            name="logout"
-            active={activeItem === "logout"}
-            //  onClick={this.handleItemClick}
-          />
-        </MenuMenu>
       </Menu>
     );
   }

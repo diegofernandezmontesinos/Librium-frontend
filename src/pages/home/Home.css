@@ -1,0 +1,27 @@
+.home-Body {
+  height: 100vh;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Home-Cover {
+  height: 40vh;
+  background-color: tomato;
+  width: 80vw;
+  margin-top: 5px;
+}
+
+.three-articles-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+}
+article {
+    width: 33vw;
+    height: 20vh;
+}

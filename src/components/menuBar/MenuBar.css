@@ -4,16 +4,8 @@
   align-content: center !important;
   justify-content: space-between !important;
   width: auto !important;
-  gap: 50px !important;
+  gap: 60px !important;
 }
-
-.rightContainer {
-  width: 10vw !important;
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 10px !important;
-}
-
 .item {
   min-width: 5vw !important;
   width: auto !important;
