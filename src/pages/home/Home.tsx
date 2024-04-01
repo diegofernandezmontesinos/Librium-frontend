@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import { Button } from "semantic-ui-react";
+import axios from "axios";
 
 function Home() {
+  const fecthData = () => {
+    axios.get("http://127.0.0.1:8000/api/books").then((res) => {
+      console.table(res);
+    });
+  };
+
+  useEffect(() => {
+    fecthData();
+  }, []);
+
   return (
     <div className="home-Body">
       <section className="Home-Cover">
@@ -39,9 +50,28 @@ function Home() {
           </Button>
         </article>
       </section>
-      <div>
-        <section></section>
-        <section></section>
+      <div className="four-articles-container">
+        <section className="articleContainerFourArticles">
+          {" "}
+          <img
+            src="https://picsum.photos/id/63/100/190"
+            alt="opn book in a table"
+          />
+          <p>
+            Libros infantiles para celebrarlo
+            <Button className="buttonsHome">See more</Button>
+          </p>
+        </section>
+        <section className="articleContainerFourArticles">
+          <p>
+            Nuestras recomendaciones en el mes del libro
+            <Button className="buttonsHome">See more</Button>
+          </p>
+          <img
+            src="https://picsum.photos/id/63/100/190"
+            alt="opn book in a table"
+          />
+        </section>
       </div>
     </div>
   );

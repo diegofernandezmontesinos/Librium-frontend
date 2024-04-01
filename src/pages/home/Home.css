@@ -1,5 +1,4 @@
 .home-Body {
-  height: 100vh;
   color: black;
   display: flex;
   flex-direction: column;
@@ -17,11 +16,32 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 70vh;
+}
+.four-articles-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  height: 70vh;
+  width: 80vw;
+  justify-content: space-between;
 }
 article {
   width: 30vw;
-  height: 20vh;
-  padding: 15px 2px 0 2px;
+  padding: 15vh 2px 0 2px;
+}
+
+.articleContainerFourArticles {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.articleContainerFourArticles p{
+    font-size: 30px;
 }
 
 .buttonsHome {
@@ -34,9 +54,9 @@ article {
 }
 
 article h3 {
-padding: 0 10px 0 10px;
+  padding: 0 10px 0 10px;
 }
 
 .purple {
-  background-color: #DF00A9 !important;
+  background-color: #df00a9 !important;
 }
