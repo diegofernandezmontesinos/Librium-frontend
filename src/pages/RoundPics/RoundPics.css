@@ -1,0 +1,10 @@
+.mainRoundContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100vw;
+}
+
+.mainRoundContainer img {
+  border-radius: 50px;
+}

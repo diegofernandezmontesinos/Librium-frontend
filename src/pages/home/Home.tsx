@@ -73,8 +73,8 @@ function Home() {
             alt="opn book in a table"
           />
         </section>
-        <RoundPics />
       </div>
+        <RoundPics />
     </div>
   );
 }
