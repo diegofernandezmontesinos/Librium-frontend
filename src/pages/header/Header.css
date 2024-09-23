@@ -8,14 +8,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 3rem 0 3rem;
+  /* margin: 0 3rem 0 3rem;
   max-width: 100%;
-  min-width: 100vw;
+  min-width: 100vw; */
 }
 
 .first-row-container {
   display: flex;
-  flex-direction: row;
+  padding: 0 10em;
   gap: 4.5rem;
 }
 
@@ -42,7 +42,6 @@
 }
 
 .second-row-container {
-  display: flex;
-  flex-direction: row;
+  padding: 0 10em;
   margin-top: 1vh;
 }
