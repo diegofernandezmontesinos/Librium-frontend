@@ -1,24 +1,17 @@
-import React, { useEffect } from "react";
 import "./Home.css";
 import { Button } from "semantic-ui-react";
-import axios from "axios";
 
 function Home() {
-  const fecthData = () => {
-    axios.get("http://127.0.0.1:8000/api/books").then((res) => {
-      console.table(res);
-    });
-  };
 
-  useEffect(() => {
-    fecthData();
-  }, []);
+  const getImage = () => {
+      return "https://picsum.photos/id/7/250/270"
+  }
 
   return (
     <div className="home-Body">
       <section className="Home-Cover">
         <img
-          src="https://picsum.photos/id/24/1080/270"
+          src={getImage()}
           alt="opn book in a table"
         />
       </section>
