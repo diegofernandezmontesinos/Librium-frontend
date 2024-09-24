@@ -1,11 +1,13 @@
+
 import "./Home.css";
 import { Button } from "semantic-ui-react";
+
 
 function Home() {
 
   const getImage = () => {
-      return "https://picsum.photos/id/7/250/270"
-  }
+    return "https://picsum.photos/id/24/1080/270"
+}
 
   return (
     <div className="home-Body">
