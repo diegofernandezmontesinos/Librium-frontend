@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
+cors = CORS(app, origins='*')
 
 class StorageService:
     def __init__(self):
@@ -72,18 +74,7 @@ def signout():
 
 
 
-#This section is to recover the images from the endpoin
-@app.route('/coverbook', methods=['GET'])
-def get_CoverBook():
-    response = requests.get('https://picsum.photos/id/7/250/270')
-    if response.status_code == 200:
-        return make_response(response.content, response.status_code, {'Content-Type': response.headers['Content-Type']})
-    else:
-        return jsonify({'error': 'Image not found'}), response.status_code
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
+#TODO
 @app.route('/favorites', methods=['POST'])
 def save_favorites():
     global favorites_storage

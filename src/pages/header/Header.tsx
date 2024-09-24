@@ -5,8 +5,15 @@ import GeolocationIcon from "../../icons/geolocation";
 import PersonFill from "../../icons/personFill";
 import ShoppingCar from "../../icons/shoppingCar";
 import MenuBar from "../../components/menuBar/MenuBar";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/login");
+  };
+
   return (
     <header className="header-body">
       <div className="container-body">
@@ -22,7 +29,12 @@ function Header() {
             <GeolocationIcon />
             Librerías
           </Button>
-          <Button size="small" color="grey" className="buttonIcon-header">
+          <Button
+            onClick={handleClick}
+            size="small"
+            color="grey"
+            className="buttonIcon-header"
+          >
             <PersonFill />
             My Account
           </Button>
@@ -31,7 +43,7 @@ function Header() {
           </Button>
         </div>
         <div className="second-row-container">
-            <MenuBar />
+          <MenuBar />
         </div>
       </div>
     </header>
