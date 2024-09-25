@@ -17,3 +17,6 @@ npm run dev
 
 npm install -D sass
 npm install semantic-ui
+npm install react-router-dom
+pip install flask
+pip install flask_cors
