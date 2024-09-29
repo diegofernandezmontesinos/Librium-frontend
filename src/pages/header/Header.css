@@ -1,20 +1,18 @@
 .header-body {
-  height: 15vh;
-  color: black;
-  background-color: white;
+  height: 12vh;
+  color: white;
+  background-color: #221f1f;
 }
 
 .container-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* margin: 0 3rem 0 3rem;
-  max-width: 100%;
-  min-width: 100vw; */
 }
 
 .first-row-container {
   display: flex;
+  justify-content: space-around;
   padding: 0 10em;
   gap: 4.5rem;
 }
@@ -27,18 +25,18 @@
   display: flex;
   height: fit-content;
   margin-top: 3vh;
-  background-color: white;
-  color: black;
+  background-color: #221f1f;
+  color: white;
   border: none;
   cursor: pointer;
 }
 
 .input-header {
   margin-top: 10px;
-  width: 43vw;
-  height: 8vh;
-  background-color: white;
-  color: rgb(65, 65, 65);
+  width: 40vw;
+  height: 3vh;
+  background-color: #f5f5f1;
+  color: #414141;
 }
 
 .second-row-container {

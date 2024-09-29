@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { Button } from "semantic-ui-react";
 import Header from "../header/Header";
+import bookshell from '../../images/librarybookshell.jpg'
 
 function Home() {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    fetch("https://picsum.photos/id/24/1080/270")
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = URL.createObjectURL(blob);
-        setImage(url);
-      })
-      .catch((error) => console.error("Error fetching the image:", error));
+    setImage(bookshell)
+    // fetch("https://picsum.photos/id/24/1080/270")
+    //   .then((response) => response.blob())
+    //   .then((blob) => {
+    //     const url = URL.createObjectURL(blob);
+    //     setImage(url);
+    //   })
+    //   .catch((error) => console.error("Error fetching the image:", error));
   }, []);
 
   return (
@@ -50,7 +52,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome purple">
+            <Button className="buttonsHome">
               I want to be in the club
             </Button>
           </article>
@@ -60,7 +62,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome purple">
+            <Button className="buttonsHome">
               I want to be in the club
             </Button>
           </article>
@@ -70,7 +72,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome purple">
+            <Button className="buttonsHome">
               I want to be in the club
             </Button>
           </article>
@@ -99,6 +101,9 @@ function Home() {
           </section>
         </div>
       </div>
+      <footer>
+        <p>This is a footer, still in test</p>
+      </footer>
     </>
   );
 }
