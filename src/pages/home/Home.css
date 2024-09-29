@@ -56,3 +56,13 @@ article h3 {
 .purple {
   background-color: #df00a9 !important;
 }
+
+.TAC-img-1:hover img{
+  width: 65%;
+}
+.TAC-img-2:hover img{
+  width: 65%;
+}
+.TAC-img-3:hover img{
+  width: 65%;
+}

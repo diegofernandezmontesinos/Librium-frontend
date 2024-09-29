@@ -28,7 +28,7 @@ function Home() {
           )}
         </section>
         <section className="three-articles-container">
-          <article>
+          <article className="TAC-img-1">
             <img
               src="https://picsum.photos/id/7/250/270"
               alt="opn book in a table"
@@ -36,7 +36,7 @@ function Home() {
             <h3>Online shop, pick up at store</h3>
             <Button className="buttonsHome">See more</Button>
           </article>
-          <article>
+          <article className="TAC-img-2">
             <img
               src="https://picsum.photos/id/20/250/270"
               alt="opn book in a table"
@@ -44,7 +44,7 @@ function Home() {
             <h3>Author's signed books</h3>
             <Button className="buttonsHome">See more</Button>
           </article>
-          <article>
+          <article className="TAC-img-3">
             <img
               src="https://picsum.photos/id/635/250/270"
               alt="opn book in a table"
