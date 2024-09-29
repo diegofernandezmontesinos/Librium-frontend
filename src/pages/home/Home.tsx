@@ -27,8 +27,8 @@ function Home() {
             <p>Loading...</p>
           )}
         </section>
-        <section className="three-articles-container">
-          <article className="TAC-img-1">
+        <section className="mid-articles-container">
+          <article className="TAC-img">
             <img
               src="https://picsum.photos/id/7/250/270"
               alt="opn book in a table"
@@ -36,7 +36,7 @@ function Home() {
             <h3>Online shop, pick up at store</h3>
             <Button className="buttonsHome">See more</Button>
           </article>
-          <article className="TAC-img-2">
+          <article className="TAC-img">
             <img
               src="https://picsum.photos/id/20/250/270"
               alt="opn book in a table"
@@ -44,7 +44,7 @@ function Home() {
             <h3>Author's signed books</h3>
             <Button className="buttonsHome">See more</Button>
           </article>
-          <article className="TAC-img-3">
+          <article className="TAC-img">
             <img
               src="https://picsum.photos/id/635/250/270"
               alt="opn book in a table"
@@ -54,9 +54,29 @@ function Home() {
               I want to be in the club
             </Button>
           </article>
+          <article className="TAC-img">
+            <img
+              src="https://picsum.photos/id/640/250/270"
+              alt="opn book in a table"
+            />
+            <h3>Join our club and have special discounts</h3>
+            <Button className="buttonsHome purple">
+              I want to be in the club
+            </Button>
+          </article>
+          <article className="TAC-img">
+            <img
+              src="https://picsum.photos/id/630/250/270"
+              alt="opn book in a table"
+            />
+            <h3>Join our club and have special discounts</h3>
+            <Button className="buttonsHome purple">
+              I want to be in the club
+            </Button>
+          </article>
         </section>
-        <div className="four-articles-container">
-          <section className="articleContainerFourArticles">
+        <div className="footer-articles-container">
+          <section className="FAC-img">
             {" "}
             <img
               src="https://picsum.photos/id/63/100/190"
@@ -67,7 +87,7 @@ function Home() {
               <Button className="buttonsHome">See more</Button>
             </p>
           </section>
-          <section className="articleContainerFourArticles">
+          <section className="FAC-img">
             <p>
               Nuestras recomendaciones en el mes del libro
               <Button className="buttonsHome">See more</Button>
