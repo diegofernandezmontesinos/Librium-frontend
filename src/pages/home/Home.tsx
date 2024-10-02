@@ -3,6 +3,7 @@ import "./Home.css";
 import { Button } from "semantic-ui-react";
 import Header from "../header/Header";
 import bookshell from '../../images/librarybookshell.jpg'
+import Footer from "../../components/Footer/Footer";
 
 function Home() {
   const [image, setImage] = useState("");
@@ -101,9 +102,7 @@ function Home() {
           </section>
         </div>
       </div>
-      <footer>
-        <p>This is a footer, still in test</p>
-      </footer>
+      <Footer/>
     </>
   );
 }

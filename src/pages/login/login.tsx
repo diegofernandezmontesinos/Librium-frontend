@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
+import Footer from "../../components/Footer/Footer";
 // import { signIn } from "../../share/apiService";
 
 //interface LogInProps {
@@ -38,32 +39,36 @@ const LogIn = () => {
   // };
 
   return (
-    <section className="login-section">
-      <div className="login-banner">
-      </div>
-      <form className="login-formulario" onSubmit={handleSubmit}>
-        <div className="input-container">
-          <i className="icon-username"></i>
-          <input
-            type="text"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            placeholder="Nombre de usuario"
-          />
-        </div>
-        <div className="input-container">
-          <i className="icon-password"></i>
-          <input
-            type="password"
-            value={contraseña}
-            onChange={(e) => setContraseña(e.target.value)}
-            placeholder="Contraseña"
-          />
-        </div>
-        {/* <button onClick={() => handleLogin(nombre)}>Log In</button> */}
-      </form>
-      {error && <p>{error}</p>}
-    </section>
+    <>
+      <section className="login-section">
+        <div className="login-banner"></div>
+        <form className="login-formulario" onSubmit={handleSubmit}>
+          <div className="input-container">
+            <i className="icon-username"></i>
+            <input
+              type="text"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              placeholder="Nombre de usuario"
+            />
+          </div>
+          <div className="input-container">
+            <i className="icon-password"></i>
+            <input
+              type="password"
+              value={contraseña}
+              onChange={(e) => setContraseña(e.target.value)}
+              placeholder="Contraseña"
+            />
+          </div>
+          {/* <button onClick={() => handleLogin(nombre)}>Log In</button> */}
+        </form>
+        {error && <p>{error}</p>}
+      </section>
+      <footer>
+        <Footer />
+      </footer>
+    </>
   );
 };
 
