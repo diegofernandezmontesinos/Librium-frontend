@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Home.css";
 import { Button } from "semantic-ui-react";
 import Header from "../header/Header";
-import bookshell from '../../images/librarybookshell.jpg'
 import Footer from "../../components/Footer/Footer";
 
 function Home() {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    setImage(bookshell)
+    setImage('../../images/librarybookshell.jpg')
     // fetch("https://picsum.photos/id/24/1080/270")
     //   .then((response) => response.blob())
     //   .then((blob) => {

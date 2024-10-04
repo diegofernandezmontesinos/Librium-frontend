@@ -1,4 +1,3 @@
-import React from "react";
 import "./Header.css";
 import { Button } from "semantic-ui-react";
 import GeolocationIcon from "../../icons/geolocation";

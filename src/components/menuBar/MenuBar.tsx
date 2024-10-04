@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import "./MenuBar.css";
-import { MenuMenu, MenuItem, Input, Menu } from "semantic-ui-react";
+import { MenuItem, Menu } from "semantic-ui-react";
 
 export default class MenuBar extends Component {
   state = { activeItem: "home" };
