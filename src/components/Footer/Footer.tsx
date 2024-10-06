@@ -11,7 +11,6 @@ function Footer() {
         </p>
         <button  onClick={() => setCounter(counter + 1)}>Click me</button>
       </div>
-
     </>
   )
 }
