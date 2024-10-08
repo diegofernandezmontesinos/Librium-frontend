@@ -1,34 +1,23 @@
-import { useEffect, useState } from "react";
+
 import "./Home.css";
 import { Button } from "semantic-ui-react";
 import Header from "../header/Header";
 import Footer from "../../components/Footer/Footer";
 
 function Home() {
-  const [image, setImage] = useState("");
-
-  useEffect(() => {
-    setImage('../../images/librarybookshell.jpg')
-    // fetch("https://picsum.photos/id/24/1080/270")
-    //   .then((response) => response.blob())
-    //   .then((blob) => {
-    //     const url = URL.createObjectURL(blob);
-    //     setImage(url);
-    //   })
-    //   .catch((error) => console.error("Error fetching the image:", error));
-  }, []);
-
   return (
     <>
       <Header />
       <div className="home-Body">
         <section className="Home-Cover">
-          {image ? (
-            <img src={image} alt="Cover Book TEST" />
-          ) : (
-            <p>Loading...</p>
-          )}
+          <img
+            src="src/images/librarybookshell.jpg"
+            alt="Cover Book TEST"
+          />
         </section>
+        <div className="lineal-section">
+          <p>Explore the world</p>
+        </div>
         <section className="mid-articles-container">
           <article className="TAC-img">
             <img
@@ -52,9 +41,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome">
-              I want to be in the club
-            </Button>
+            <Button className="buttonsHome">I want to be in the club</Button>
           </article>
           <article className="TAC-img">
             <img
@@ -62,9 +49,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome">
-              I want to be in the club
-            </Button>
+            <Button className="buttonsHome">I want to be in the club</Button>
           </article>
           <article className="TAC-img">
             <img
@@ -72,9 +57,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome">
-              I want to be in the club
-            </Button>
+            <Button className="buttonsHome">I want to be in the club</Button>
           </article>
         </section>
         <div className="footer-articles-container">
@@ -101,7 +84,7 @@ function Home() {
           </section>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
