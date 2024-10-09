@@ -5,6 +5,21 @@ import Header from "../header/Header";
 import Footer from "../../components/Footer/Footer";
 
 function Home() {
+
+  const handleClick = (prop: string) => {
+    if(prop == 'author') { 
+      console.log('Autores');
+    } else if(prop == 'kids'){ 
+      console.log('kids');
+    }else if(prop == 'club'){ 
+      console.log('club');
+    }else if(prop == 'shop'){ 
+      console.log('shop');
+    }else if(prop == 'new'){ 
+      console.log('new');
+    }
+    
+  }
   return (
     <>
       <Header />
@@ -25,7 +40,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Online shop, pick up at store</h3>
-            <Button className="buttonsHome">See more</Button>
+            <Button onClick={() => handleClick('shop')} className="buttonsHome">See more</Button>
           </article>
           <article className="TAC-img">
             <img
@@ -33,7 +48,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Author's signed books</h3>
-            <Button className="buttonsHome">See more</Button>
+            <Button onClick={() => handleClick('author')} className="buttonsHome">See more</Button>
           </article>
           <article className="TAC-img">
             <img
@@ -41,7 +56,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome">I want to be in the club</Button>
+            <Button onClick={() => handleClick('club')} className="buttonsHome">I want to be in the club</Button>
           </article>
           <article className="TAC-img">
             <img
@@ -49,7 +64,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome">I want to be in the club</Button>
+            <Button onClick={() => handleClick('club')} className="buttonsHome">I want to be in the club</Button>
           </article>
           <article className="TAC-img">
             <img
@@ -57,7 +72,7 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button className="buttonsHome">I want to be in the club</Button>
+            <Button onClick={() => handleClick('club')} className="buttonsHome">I want to be in the club</Button>
           </article>
         </section>
         <div className="footer-articles-container">
@@ -69,13 +84,13 @@ function Home() {
             />
             <p>
               Libros infantiles para celebrarlo
-              <Button className="buttonsHome">See more</Button>
+              <Button onClick={() => handleClick('kids')} className="buttonsHome">See more</Button>
             </p>
           </section>
           <section className="FAC-img">
             <p>
               Nuestras recomendaciones en el mes del libro
-              <Button className="buttonsHome">See more</Button>
+              <Button onClick={() => handleClick('new')} className="buttonsHome">See more</Button>
             </p>
             <img
               src="https://picsum.photos/id/63/100/190"

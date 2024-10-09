@@ -1,3 +1,6 @@
+@media only screen and (min-width:1200px) {
+
+
 .home-Body {
   color: #221f1f;
   display: flex;
@@ -8,7 +11,7 @@
 .Home-Cover {
   width: 50vw;
   height: 50vh;
-  margin-top: 8px;
+  margin-top: 5em;
 }
 .Home-Cover img  {
   width: 100%;
@@ -92,16 +95,235 @@ h3 {
   border-radius: 10px;
 }
 
+article h3 {
+  padding: 0 10px 0 10px;
+}
 .buttonsHome {
   width: 10vw;
   height: 5vh;
   background-color: #ea8000;
   border-radius: 25px;
   color: #221f1f;
-  font-size: medium;
   font-family: Arial, Helvetica, sans-serif;
 }
-
-article h3 {
-  padding: 0 10px 0 10px;
 }
+
+@media only screen and (max-width: 1200px) {
+  .home-Body {
+    color: #221f1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Home-Cover {
+    width: 50vw;
+    height: 5vh;
+  }
+  .Home-Cover img  {
+    width: 100%;
+  }
+  .lineal-section{
+    display: none;
+    color:#f5f5f1
+  }
+  
+  .mid-articles-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2vw;
+    color: #f5f5f1;
+
+
+  }
+  .mid-articles-container img {
+    width: 60%;
+  }
+  .mid-articles-container h3 {
+    display: none;
+  }
+  
+  .TAC-img:hover h3,
+  .buttons-mid-article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    gap: 2vw;
+    color: #f5f5f1;
+  }
+  .footer-articles-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    width: 80vw;
+    margin-top: 5em;
+    color: #f5f5f1;
+  }
+  article {
+    /*width: 20vw;*/
+    padding: 1vh 2px 0 2px;
+  }
+  .TAC-img {
+    transition: transform 0.8s ease;
+    width: 100%;
+    background-color: #221f1f;
+  }
+  .TAC-img:hover {
+    transform: scale(1.2);
+    background-color: #414141;
+    border-radius: 10px;
+  }
+  .TAC-img:hover img,
+  h3 {
+    width: 100%;
+  }
+  
+  .FAC-img {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .FAC-img p {
+    transition: transform 0.8s ease;
+    font-size: 30px;
+  }
+  .FAC-img {
+    transition: transform 0.8s ease;
+    font-size: 30px;
+  }
+  .FAC-img:hover {
+    transform: scale(1.2);
+    background-color: #414141;
+    border-radius: 10px;
+  }
+  
+  
+  article h3 {
+    padding: 0 10px 0 10px;
+  }
+  
+  
+  .buttonsHome {
+    width: 10vw;
+    height: 2vh;
+    background-color: ea8000;
+    border-radius: 25px;
+    color: #221f1f;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .home-Body {
+    color: #221f1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Home-Cover {
+    width: 50vw;
+    height: 10vh;
+    margin-top: 8em;
+  }
+  .Home-Cover img  {
+    width: 100%;
+  }
+  .lineal-section{
+    display: none;
+    color:#f5f5f1
+  }
+  
+  .mid-articles-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    color: #f5f5f1;
+  }
+  .mid-articles-container img {
+    width: 70%;
+  }
+  .mid-articles-container h3 {
+    display: none;
+  }
+  
+  .TAC-img:hover h3,
+  .buttons-mid-article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    gap: 2vw;
+    color: #f5f5f1;
+  }
+  .footer-articles-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    width: 80vw;
+    margin-top: 5em;
+    color: #f5f5f1;
+  }
+  article {
+    /*width: 20vw;*/
+    padding: 1vh 2px 0 2px;
+  }
+  .TAC-img {
+    transition: transform 0.8s ease;
+    width: 100%;
+    background-color: #221f1f;
+  }
+  .TAC-img:hover {
+    transform: scale(1.2);
+    background-color: #414141;
+    border-radius: 10px;
+  }
+  .TAC-img:hover img,
+  h3 {
+    width: 100%;
+  }
+  
+  .FAC-img {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .FAC-img p {
+    transition: transform 0.8s ease;
+    font-size: 30px;
+  }
+  .FAC-img {
+    transition: transform 0.8s ease;
+    font-size: 30px;
+  }
+  .FAC-img:hover {
+    transform: scale(1.2);
+    background-color: #414141;
+    border-radius: 10px;
+  }
+  
+  
+  article h3 {
+    padding: 0 10px 0 10px;
+  }
+  
+  .buttonsHome {
+    width: 10vw;
+    height: 4vh;
+    background-color: ea8000;
+    border-radius: 25px;
+    color: #221f1f;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
