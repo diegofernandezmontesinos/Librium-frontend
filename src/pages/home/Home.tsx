@@ -3,19 +3,26 @@ import "./Home.css";
 import { Button } from "semantic-ui-react";
 import Header from "../header/Header";
 import Footer from "../../components/Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
 
   const handleClick = (prop: string) => {
     if(prop == 'author') { 
+      navigate("/error");
       console.log('Autores');
     } else if(prop == 'kids'){ 
+      navigate("/error");
       console.log('kids');
-    }else if(prop == 'club'){ 
+    }else if(prop == 'club'){
+      navigate("/error"); 
       console.log('club');
     }else if(prop == 'shop'){ 
+      navigate("/error");
       console.log('shop');
     }else if(prop == 'new'){ 
+      navigate("/error");
       console.log('new');
     }
     
