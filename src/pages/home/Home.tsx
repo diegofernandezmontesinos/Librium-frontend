@@ -1,4 +1,3 @@
-
 import "./Home.css";
 import { Button } from "semantic-ui-react";
 import Header from "../header/Header";
@@ -9,33 +8,30 @@ function Home() {
   const navigate = useNavigate();
 
   const handleClick = (prop: string) => {
-    if(prop == 'author') { 
+    if (prop == "author") {
       navigate("/error");
-      console.log('Autores');
-    } else if(prop == 'kids'){ 
+      console.log("Autores");
+    } else if (prop == "kids") {
       navigate("/error");
-      console.log('kids');
-    }else if(prop == 'club'){
-      navigate("/error"); 
-      console.log('club');
-    }else if(prop == 'shop'){ 
+      console.log("kids");
+    } else if (prop == "club") {
       navigate("/error");
-      console.log('shop');
-    }else if(prop == 'new'){ 
+      console.log("club");
+    } else if (prop == "terror") {
+      navigate("/Terror");
+      console.log("shop");
+    } else if (prop == "new") {
       navigate("/error");
-      console.log('new');
+      console.log("new");
     }
-    
-  }
+  };
+
   return (
     <>
       <Header />
       <div className="home-Body">
         <section className="Home-Cover">
-          <img
-            src="src/images/librarybookshell.jpg"
-            alt="Cover Book TEST"
-          />
+          <img src="src/images/librarybookshell.jpg" alt="Cover Book TEST" />
         </section>
         <div className="lineal-section">
           <p>Explore the world</p>
@@ -46,8 +42,13 @@ function Home() {
               src="https://picsum.photos/id/7/250/270"
               alt="opn book in a table"
             />
-            <h3>Online shop, pick up at store</h3>
-            <Button onClick={() => handleClick('shop')} className="buttonsHome">See more</Button>
+            <h3>Terror</h3>
+            <Button
+              onClick={() => handleClick("terror")}
+              className="buttonsHome"
+            >
+              See more
+            </Button>
           </article>
           <article className="TAC-img">
             <img
@@ -55,7 +56,12 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Author's signed books</h3>
-            <Button onClick={() => handleClick('author')} className="buttonsHome">See more</Button>
+            <Button
+              onClick={() => handleClick("author")}
+              className="buttonsHome"
+            >
+              See more
+            </Button>
           </article>
           <article className="TAC-img">
             <img
@@ -63,7 +69,9 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button onClick={() => handleClick('club')} className="buttonsHome">I want to be in the club</Button>
+            <Button onClick={() => handleClick("club")} className="buttonsHome">
+              I want to be in the club
+            </Button>
           </article>
           <article className="TAC-img">
             <img
@@ -71,7 +79,9 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button onClick={() => handleClick('club')} className="buttonsHome">I want to be in the club</Button>
+            <Button onClick={() => handleClick("club")} className="buttonsHome">
+              I want to be in the club
+            </Button>
           </article>
           <article className="TAC-img">
             <img
@@ -79,7 +89,9 @@ function Home() {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button onClick={() => handleClick('club')} className="buttonsHome">I want to be in the club</Button>
+            <Button onClick={() => handleClick("club")} className="buttonsHome">
+              I want to be in the club
+            </Button>
           </article>
         </section>
         <div className="footer-articles-container">
@@ -91,13 +103,23 @@ function Home() {
             />
             <p>
               Libros infantiles para celebrarlo
-              <Button onClick={() => handleClick('kids')} className="buttonsHome">See more</Button>
+              <Button
+                onClick={() => handleClick("kids")}
+                className="buttonsHome"
+              >
+                See more
+              </Button>
             </p>
           </section>
           <section className="FAC-img">
             <p>
               Nuestras recomendaciones en el mes del libro
-              <Button onClick={() => handleClick('new')} className="buttonsHome">See more</Button>
+              <Button
+                onClick={() => handleClick("new")}
+                className="buttonsHome"
+              >
+                See more
+              </Button>
             </p>
             <img
               src="https://picsum.photos/id/63/100/190"

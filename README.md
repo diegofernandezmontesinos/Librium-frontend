@@ -20,3 +20,9 @@ npm install semantic-ui
 npm install react-router-dom
 pip install flask
 pip install flask_cors
+
+
+**API to take the books gender api:**
+
+1. https://publicapis.dev/category/books
+2. https://potterapi-fedeperin.vercel.app/en/books
