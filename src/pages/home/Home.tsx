@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 
-function Home() {
+const Home = () => {
   const navigate = useNavigate();
 
   const handleClick = (prop: string) => {
@@ -131,6 +131,6 @@ function Home() {
       <Footer />
     </>
   );
-}
+};
 
 export default Home;

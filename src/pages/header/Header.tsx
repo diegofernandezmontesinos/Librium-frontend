@@ -6,7 +6,7 @@ import ShoppingCar from "../../icons/shoppingCar";
 import MenuBar from "../../components/menuBar/MenuBar";
 import { useNavigate } from "react-router-dom";
 
-function Header() {
+const Header = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
