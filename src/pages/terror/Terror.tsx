@@ -26,7 +26,7 @@ function Terror() {
   return (
     <>
       <Header />
-      <div>Terror</div>
+      <div>Terror Page</div>
       <div className="book-item">
         {books.map((book) => {
           return (

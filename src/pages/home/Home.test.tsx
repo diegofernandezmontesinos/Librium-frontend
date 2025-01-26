@@ -1,6 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  useNavigate,
+  MemoryRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import Home from "./Home";
 
 jest.mock("../header/Header", () => () => <div>Mock Header</div>);
@@ -63,8 +69,24 @@ describe("User", () => {
 
   test("renders Header and Footer components", () => {
     renderWithRouter(<Home />);
-  
+
     expect(screen.getByText("Mock Header")).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
+  });
+
+  it("navigates to the correct route when a button is clicked", async () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Terror" element={<div>Terror Page</div>} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const button = screen.getByRole("button", { name: /See more/i });
+    await userEvent.click(button);
+
+    expect(screen.getByText("Terror Page")).toBeInTheDocument();
   });
 });
