@@ -5,6 +5,7 @@ import PersonFill from "../../icons/personFill";
 import ShoppingCar from "../../icons/shoppingCar";
 import MenuBar from "../../components/menuBar/MenuBar";
 import { useNavigate } from "react-router-dom";
+import LanguageSwitcher from "../../components/languageSwitcher/languageSwitcher";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Header = () => {
             <GeolocationIcon />
             Librerías
           </Button>
+          <LanguageSwitcher/>
           <Button
             onClick={handleClick}
             size="small"

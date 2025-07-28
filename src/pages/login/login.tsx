@@ -1,13 +1,11 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./login.css";
-import Footer from "../../components/Footer/Footer";
-// import { signIn } from "../../share/apiService";
-
-//interface LogInProps {
-//   setUser: React.Dispatch<React.SetStateAction<string[]>>;
-// }
+import Footer from "../../components/footer/Footer";
+import Header from "../header/Header";
 
 const LogIn = () => {
+  const { t } = useTranslation();
   const [nombre, setNombre] = useState<string>("");
   const [contraseña, setContraseña] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -15,31 +13,24 @@ const LogIn = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (nombre.length < 4 || nombre.length > 10) {
-      setError("El nombre de usuario debe tener entre 4 y 10 caracteres.");
+      setError(t("login.usernameError"));
       return;
     }
 
     const contraseñaRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{4,}$/;
     if (!contraseñaRegex.test(contraseña)) {
-      setError(
-        "La contraseña debe contener al menos una mayúscula, al menos un número y una longitud mínima de 4."
-      );
+      setError(t("login.passwordError"));
       return;
     }
+
     localStorage.setItem("user", JSON.stringify({ nombre, contraseña }));
     console.log("Usuario guardado en localStorage:", { nombre, contraseña });
+    setError(""); // limpiar mensaje de error al hacer submit correctamente
   };
-  // const handleLogin = async (user: string) => {
-  //   try {
-  //     const response = await signIn({ nombre, contraseña });
-
-  //   } catch (error) {
-  //     console.error("Error signing in:", error);
-  //   }
-  // };
 
   return (
     <>
+    <Header/>
       <section className="login-section">
         <div className="login-banner"></div>
         <form className="login-formulario" onSubmit={handleSubmit}>
@@ -49,7 +40,7 @@ const LogIn = () => {
               type="text"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
-              placeholder="Nombre de usuario"
+              placeholder={t("login.usernamePlaceholder")}
             />
           </div>
           <div className="input-container">
@@ -58,12 +49,12 @@ const LogIn = () => {
               type="password"
               value={contraseña}
               onChange={(e) => setContraseña(e.target.value)}
-              placeholder="Contraseña"
+              placeholder={t("login.passwordPlaceholder")}
             />
           </div>
-          {/* <button onClick={() => handleLogin(nombre)}>Log In</button> */}
+          <button type="submit">{t("login.submitButton")}</button>
         </form>
-        {error && <p>{error}</p>}
+        {error && <p className="login-error">{error}</p>}
       </section>
       <footer>
         <Footer />

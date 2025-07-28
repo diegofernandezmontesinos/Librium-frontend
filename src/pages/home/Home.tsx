@@ -1,8 +1,8 @@
-import "./Home.css";
 import { Button } from "semantic-ui-react";
 import Header from "../header/Header";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
-import "./App.css";
 import Home from "./pages/home/Home";
 import LogIn from "./pages/login/login";
 import ErrorPage from "./pages/error/ErrorPage";
 import Terror from "./pages/terror/Terror";
+import "./App.css";
 
 function App() {
   return (
