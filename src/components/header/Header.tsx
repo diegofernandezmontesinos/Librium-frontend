@@ -1,11 +1,11 @@
 import "./Header.css";
 import { Button } from "semantic-ui-react";
-import GeolocationIcon from "../../icons/geolocation";
-import PersonFill from "../../icons/personFill";
-import ShoppingCar from "../../icons/shoppingCar";
-import MenuBar from "../../components/menuBar/MenuBar";
+import GeolocationIcon from "../../assets/icons/geolocation";
+import PersonFill from "../../assets/icons/personFill";
+import ShoppingCar from "../../assets/icons/shoppingCar";
+import MenuBar from "../menuBar/MenuBar";
 import { useNavigate } from "react-router-dom";
-import LanguageSwitcher from "../../components/languageSwitcher/languageSwitcher";
+import LanguageSwitcher from "../languageSwitcher/languageSwitcher";
 
 const Header = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { Button } from "semantic-ui-react";
-import Header from "../header/Header";
+import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
@@ -31,7 +31,7 @@ const Home = () => {
       <Header />
       <div className="home-Body">
         <section className="Home-Cover">
-          <img src="src/images/librarybookshell.jpg" alt="Cover Book TEST" />
+          <img src="src/assets/images/librarybookshell.jpg" alt="Cover Book TEST" />
         </section>
         <div className="lineal-section">
           <p>Explore the world</p>

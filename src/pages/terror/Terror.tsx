@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Header from "../header/Header";
+import { useEffect, useState } from "react";
+import Header from "../../components/header/Header";
 import "./Terror.css";
 
 function Terror() {
