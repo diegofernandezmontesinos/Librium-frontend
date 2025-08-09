@@ -3,26 +3,22 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
+import { HomeEnum } from "./HomeTypes";
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleClick = (prop: string) => {
-    if (prop == "author") {
+  const handleClick = (section: HomeEnum) => {
+    if (section === HomeEnum.AUTHOR) {
       navigate("/error");
-      console.log("Autores");
-    } else if (prop == "kids") {
+    } else if (section === HomeEnum.KIDS) {
       navigate("/error");
-      console.log("kids");
-    } else if (prop == "club") {
+    } else if (section == HomeEnum.CLUB) {
       navigate("/error");
-      console.log("club");
-    } else if (prop == "terror") {
+    } else if (section === HomeEnum.TERROR) {
       navigate("/Terror");
-      console.log("shop");
-    } else if (prop == "new") {
+    } else if (section === HomeEnum.NEW) {
       navigate("/error");
-      console.log("new");
     }
   };
 
@@ -31,7 +27,10 @@ const Home = () => {
       <Header />
       <div className="home-Body">
         <section className="Home-Cover">
-          <img src="src/assets/images/librarybookshell.jpg" alt="Cover Book TEST" />
+          <img
+            src="src/assets/images/librarybookshell.jpg"
+            alt="Cover Book TEST"
+          />
         </section>
         <div className="lineal-section">
           <p>Explore the world</p>
@@ -44,7 +43,7 @@ const Home = () => {
             />
             <h3>Terror</h3>
             <Button
-              onClick={() => handleClick("terror")}
+              onClick={() => handleClick(HomeEnum.TERROR)}
               className="buttonsHome"
             >
               See more
@@ -57,7 +56,7 @@ const Home = () => {
             />
             <h3>Author's signed books</h3>
             <Button
-              onClick={() => handleClick("author")}
+              onClick={() => handleClick(HomeEnum.AUTHOR)}
               className="buttonsHome"
             >
               See more
@@ -69,7 +68,10 @@ const Home = () => {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button onClick={() => handleClick("club")} className="buttonsHome">
+            <Button
+              onClick={() => handleClick(HomeEnum.CLUB)}
+              className="buttonsHome"
+            >
               I want to be in the club
             </Button>
           </article>
@@ -79,7 +81,10 @@ const Home = () => {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button onClick={() => handleClick("club")} className="buttonsHome">
+            <Button
+              onClick={() => handleClick(HomeEnum.CLUB)}
+              className="buttonsHome"
+            >
               I want to be in the club
             </Button>
           </article>
@@ -89,7 +94,10 @@ const Home = () => {
               alt="opn book in a table"
             />
             <h3>Join our club and have special discounts</h3>
-            <Button onClick={() => handleClick("club")} className="buttonsHome">
+            <Button
+              onClick={() => handleClick(HomeEnum.CLUB)}
+              className="buttonsHome"
+            >
               I want to be in the club
             </Button>
           </article>
@@ -104,7 +112,7 @@ const Home = () => {
             <p>
               Libros infantiles para celebrarlo
               <Button
-                onClick={() => handleClick("kids")}
+                onClick={() => handleClick(HomeEnum.KIDS)}
                 className="buttonsHome"
               >
                 See more
@@ -115,7 +123,7 @@ const Home = () => {
             <p>
               Nuestras recomendaciones en el mes del libro
               <Button
-                onClick={() => handleClick("new")}
+                onClick={() => handleClick(HomeEnum.NEW)}
                 className="buttonsHome"
               >
                 See more
