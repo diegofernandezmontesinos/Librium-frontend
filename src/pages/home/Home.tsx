@@ -65,9 +65,6 @@ const Home = () => {
             className="w-full h-full object-cover opacity-80"
           />
         </section>
-        <div className="bg-red-500 text-3xl font-bold p-8">
-  ¡Prueba de Tailwind!
-</div>
 
         {/* Separador Disruptivo */}
         <div className="my-16 w-3/4 text-center">
