@@ -3,15 +3,18 @@ import Home from "./pages/home/Home";
 import LogIn from "./pages/login/Login";
 import ErrorPage from "./pages/error/ErrorPage";
 import Terror from "./pages/terror/Terror";
+import ProtectedRoutes from "./utils/protectedRoutes/ProtectedRoutes";
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LogIn />} />
-        <Route path="/*" element={<ErrorPage />} />
-        <Route path="/terror" element={<Terror />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<ErrorPage />} />
+          <Route path="/terror" element={<Terror />} />
+        </Route>
       </Routes>
     </Router>
   );

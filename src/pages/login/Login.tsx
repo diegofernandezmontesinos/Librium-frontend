@@ -3,16 +3,7 @@ import { useTranslation } from "react-i18next";
 import GlobalLayout from "../../components/layouts/GlobalLayout";
 import axiosInstance from "../../utils/axios/AxiosInstance";
 import { Turnstile } from "@marsidev/react-turnstile";
-
-// helper para crear cookie (cliente). NOTA de seguridad más abajo. MOVE THIS TO A customHook
-const setCookie = (name: string, value: string, days = 1) => {
-  const expires = new Date();
-  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-  // Secure/ SameSite gesetzt; HttpOnly no puede configurarse desde JS (solo desde servidor)
-  document.cookie = `${name}=${encodeURIComponent(
-    value
-  )}; Path=/; Expires=${expires.toUTCString()}; SameSite=Strict; Secure`;
-};
+import { useAuthCookie } from "../../hooks/useAuthCookies";
 
 const LogIn: React.FC = () => {
   const { t } = useTranslation();
@@ -22,6 +13,8 @@ const LogIn: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [successMsg, setSuccessMsg] = useState<string>("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+  const { setAuthCookie } = useAuthCookie();
 
   const validateInputs = (): boolean => {
     if (username.length < 4 || username.length > 10) {
@@ -53,7 +46,7 @@ const LogIn: React.FC = () => {
       });
       switch (response.status) {
         case 200:
-          setCookie("autorizado", "true");
+          setAuthCookie("autorizado");
           //TODO -> I should encrypted this in a not so far future
           localStorage.setItem("user", JSON.stringify({ username }));
           break;
@@ -80,13 +73,13 @@ const LogIn: React.FC = () => {
 
   return (
     <GlobalLayout>
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-slate-900 text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
-            <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-6 text-3xl font-extrabold text-white">
               {t("login.title") || "Sign in to your account"}
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-white">
               {t("login.subtitle") || "Enter your credentials"}
             </p>
           </div>
@@ -102,7 +95,7 @@ const LogIn: React.FC = () => {
                   {/* icon */}
                   <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
                     <svg
-                      className="h-5 w-5 text-gray-400"
+                      className="h-5 w-5 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
