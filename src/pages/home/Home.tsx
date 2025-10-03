@@ -41,13 +41,13 @@ const Home = () => {
   const getPath = (section: HomeEnum): string => {
     switch (section) {
       case HomeEnum.TERROR:
-        return "/Terror";
+        return "/terror";
       case HomeEnum.AUTHOR:
       case HomeEnum.KIDS:
       case HomeEnum.CLUB:
       case HomeEnum.NEW:
       default:
-        return "/error";
+        return "/*";
     }
   };
 

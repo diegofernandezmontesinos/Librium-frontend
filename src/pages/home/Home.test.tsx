@@ -55,7 +55,7 @@ describe("User", () => {
     const terrorButton = screen.getByRole("button", { name: /See more/i });
     await userEvent.click(terrorButton);
 
-    expect(mockNavigate).toHaveBeenCalledWith("/Terror");
+    expect(mockNavigate).toHaveBeenCalledWith("/terror");
   });
 
   test("navigates to '/error' when 'Author's signed books' button is clicked", async () => {
@@ -64,7 +64,7 @@ describe("User", () => {
     const authorButton = screen.getByRole("button", { name: /See more/i });
     await userEvent.click(authorButton);
 
-    expect(mockNavigate).toHaveBeenCalledWith("/error");
+    expect(mockNavigate).toHaveBeenCalledWith("/*");
   });
 
   test("renders Header and Footer components", () => {

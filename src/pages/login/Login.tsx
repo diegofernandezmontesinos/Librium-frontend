@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import GlobalLayout from "../../components/layouts/GlobalLayout";
-// import './login.css'  <-- ahora usamos Tailwind, no CSS propio
+import axiosInstance from "../../utils/axios/AxiosInstance";
+import { Turnstile } from "@marsidev/react-turnstile";
 
-// helper para crear cookie (cliente). NOTA de seguridad más abajo.
+// helper para crear cookie (cliente). NOTA de seguridad más abajo. MOVE THIS TO A customHook
 const setCookie = (name: string, value: string, days = 1) => {
   const expires = new Date();
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
@@ -16,19 +16,20 @@ const setCookie = (name: string, value: string, days = 1) => {
 
 const LogIn: React.FC = () => {
   const { t } = useTranslation();
-  const [nombre, setNombre] = useState<string>("");
-  const [contraseña, setContraseña] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [successMsg, setSuccessMsg] = useState<string>("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const validateInputs = (): boolean => {
-    if (nombre.length < 4 || nombre.length > 10) {
+    if (username.length < 4 || username.length > 10) {
       setError(t("login.usernameError"));
       return false;
     }
     const contraseñaRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{4,}$/;
-    if (!contraseñaRegex.test(contraseña)) {
+    if (!contraseñaRegex.test(password)) {
       setError(t("login.passwordError"));
       return false;
     }
@@ -45,34 +46,31 @@ const LogIn: React.FC = () => {
     try {
       setLoading(true);
 
-      // Cambia el endpoint por el tuyo
-      const response = await fetch("http://localhost:4000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // si tu backend setea cookies, permite recibirlas
-        body: JSON.stringify({ username: nombre, password: contraseña }),
+      const response = await axiosInstance.post("/login", {
+        username,
+        password,
+        captchaToken,
       });
-
-      if (!response.ok) {
-        // intenta leer mensaje de error del backend si existe
-        const errBody = await response.json().catch(() => null);
-        const msg = errBody?.message || "Invalid credentials";
-        throw new Error(msg);
+      switch (response.status) {
+        case 200:
+          setCookie("autorizado", "true");
+          //TODO -> I should encrypted this in a not so far future
+          localStorage.setItem("user", JSON.stringify({ username }));
+          break;
+        case 401:
+          throw new Error(
+            t("login.invalidCredentials") || "Invalid credentials"
+          );
+        case 403:
+          throw new Error(
+            t("login.captchaError") || "Captcha verification failed"
+          );
+        default:
+          throw new Error(t("login.apiError") || "Login failed");
       }
 
-      const data = await response.json().catch(() => ({}));
-      console.log("API Response:", data);
-
-      // Guardamos cookie "autorizado" (cliente). Preferible que el backend devuelva cookie HttpOnly.
-      setCookie("autorizado", "true", 1);
-
-      // Guarda información mínima en localStorage si la necesitas (no tokens sensibles)
-      localStorage.setItem("user", JSON.stringify({ nombre }));
-
       setSuccessMsg(t("login.success") || "Login successful");
-      // opcional: redirigir si usas react-router
-      // navigate('/dashboard');
-    } catch (err: any) {
+    } catch (err) {
       console.error("Login error:", err);
       setError(err?.message || t("login.apiError") || "Login failed");
     } finally {
@@ -124,8 +122,8 @@ const LogIn: React.FC = () => {
                     type="text"
                     autoComplete="username"
                     disabled={loading}
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     placeholder={t("login.usernamePlaceholder") || "Username"}
                     className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   />
@@ -160,14 +158,18 @@ const LogIn: React.FC = () => {
                     type="password"
                     autoComplete="current-password"
                     disabled={loading}
-                    value={contraseña}
-                    onChange={(e) => setContraseña(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder={t("login.passwordPlaceholder") || "Password"}
                     className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
               </div>
 
+              <Turnstile
+                siteKey={import.meta.env.VITE_CLOUDFLARE_SITE_KEY}
+                onSuccess={(token) => setCaptchaToken(token)}
+              />
               {/* Error / Success */}
               <div aria-live="polite" className="min-h-[1.25rem]">
                 {error && <p className="text-sm text-red-600">{error}</p>}

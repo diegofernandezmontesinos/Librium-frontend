@@ -3,7 +3,7 @@ import GeolocationIcon from "../../assets/icons/geolocation";
 import PersonFill from "../../assets/icons/personFill";
 import ShoppingCar from "../../assets/icons/shoppingCar";
 import MenuBar from "../menuBar/MenuBar";
-import LanguageSwitcher from "../languageSwitcher/languageSwitcher";
+import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
