@@ -3,7 +3,7 @@
   "login": {
     "usernamePlaceholder": "Username",
     "passwordPlaceholder": "Password",
-    "usernameError": "Username must be between 4 and 10 characters.",
+    "usernameError": "",
     "passwordError": "Password must contain at least one uppercase letter, one number, and be at least 4 characters long.",
     "submitButton": "Log In"
   }

@@ -3,7 +3,7 @@
   "login": {
     "usernamePlaceholder": "Nombre de usuario",
     "passwordPlaceholder": "Contraseña",
-    "usernameError": "El nombre de usuario debe tener entre 4 y 10 caracteres.",
+    "usernameError": "El nombre de usuario debe tener al menos 1 carácter.",
     "passwordError": "La contraseña debe contener al menos una mayúscula, al menos un número y una longitud mínima de 4.",
     "submitButton": "Iniciar sesión"
   }

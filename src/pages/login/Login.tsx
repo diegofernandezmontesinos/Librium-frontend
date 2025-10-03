@@ -17,7 +17,7 @@ const LogIn: React.FC = () => {
   const { setAuthCookie } = useAuthCookie();
 
   const validateInputs = (): boolean => {
-    if (username.length < 4 || username.length > 10) {
+    if (username.length < 1 || username === "") {
       setError(t("login.usernameError"));
       return false;
     }
@@ -51,13 +51,11 @@ const LogIn: React.FC = () => {
           localStorage.setItem("user", JSON.stringify({ username }));
           break;
         case 401:
+        case 403:
           throw new Error(
             t("login.invalidCredentials") || "Invalid credentials"
           );
-        case 403:
-          throw new Error(
-            t("login.captchaError") || "Captcha verification failed"
-          );
+
         default:
           throw new Error(t("login.apiError") || "Login failed");
       }
@@ -77,10 +75,10 @@ const LogIn: React.FC = () => {
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
             <h2 className="mt-6 text-3xl font-extrabold text-white">
-              {t("login.title") || "Sign in to your account"}
+              {t("Bienvenido") || "Sign in to your account"}
             </h2>
             <p className="mt-2 text-sm text-white">
-              {t("login.subtitle") || "Enter your credentials"}
+              {t("Ingresa tus credenciales") || "Enter your credentials"}
             </p>
           </div>
 
@@ -93,22 +91,6 @@ const LogIn: React.FC = () => {
                 </label>
                 <div className="relative">
                   {/* icon */}
-                  <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                    <svg
-                      className="h-5 w-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16 11c1.657 0 3-1.343 3-3S17.657 5 16 5s-3 1.343-3 3 1.343 3 3 3zM6 21v-2a4 4 0 014-4h4"
-                      />
-                    </svg>
-                  </div>
                   <input
                     id="username"
                     name="username"
@@ -118,7 +100,7 @@ const LogIn: React.FC = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder={t("login.usernamePlaceholder") || "Username"}
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="block w-full px-2 py-2 text-black border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
               </div>
@@ -129,24 +111,9 @@ const LogIn: React.FC = () => {
                   {t("login.passwordLabel") || "Password"}
                 </label>
                 <div className="relative">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                    <svg
-                      className="h-5 w-5 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 11c1.657 0 3-1.343 3-3V7a3 3 0 10-6 0v1c0 1.657 1.343 3 3 3zM6 11v6a2 2 0 002 2h8a2 2 0 002-2v-6"
-                      />
-                    </svg>
-                  </div>
                   <input
                     id="password"
+                    aria-placeholder="password"
                     name="password"
                     type="password"
                     autoComplete="current-password"
@@ -154,7 +121,7 @@ const LogIn: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder={t("login.passwordPlaceholder") || "Password"}
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="block w-full px-2 py-2 text-black border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
               </div>
@@ -176,7 +143,7 @@ const LogIn: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-60"
+                  className="w-full text-white flex justify-center py-2 px-4 border cursor-pointer border-transparent text-sm font-medium rounded-md !bg-indigo-600 !hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
                   {loading ? (
                     <svg
