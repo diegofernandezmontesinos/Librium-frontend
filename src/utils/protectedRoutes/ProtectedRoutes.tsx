@@ -1,11 +1,10 @@
-// src/routes/ProtectedRoutes.tsx
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuthCookie } from "../../hooks/useAuthCookies";
+import { useAuthStorage } from "../../hooks/useAuthCookies";
 
 const ProtectedRoutes: React.FC = () => {
-  const { getAuthCookie } = useAuthCookie();
-  const isAuthorized = !!getAuthCookie();
+  const { getAuth } = useAuthStorage();
+  const isAuthorized = getAuth();
 
   return isAuthorized ? <Outlet /> : <Navigate to="/login" replace />;
 };

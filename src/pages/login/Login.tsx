@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import GlobalLayout from "../../components/layouts/GlobalLayout";
 import axiosInstance from "../../utils/axios/AxiosInstance";
 import { Turnstile } from "@marsidev/react-turnstile";
-import { useAuthCookie } from "../../hooks/useAuthCookies";
+import { useNavigate } from "react-router-dom";
+import { useAuthStorage } from "../../hooks/useAuthCookies";
 
 const LogIn: React.FC = () => {
   const { t } = useTranslation();
@@ -14,18 +16,20 @@ const LogIn: React.FC = () => {
   const [successMsg, setSuccessMsg] = useState<string>("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-  const { setAuthCookie } = useAuthCookie();
+  const { setAuth } = useAuthStorage();
+
+  const navigate = useNavigate();
 
   const validateInputs = (): boolean => {
     if (username.length < 1 || username === "") {
       setError(t("login.usernameError"));
       return false;
     }
-    const contraseñaRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{4,}$/;
-    if (!contraseñaRegex.test(password)) {
-      setError(t("login.passwordError"));
-      return false;
-    }
+    // const contraseñaRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{4,}$/;
+    // if (!contraseñaRegex.test(password)) {
+    //   setError(t("login.passwordError"));
+    //   return false;
+    // }
     return true;
   };
 
@@ -44,24 +48,16 @@ const LogIn: React.FC = () => {
         password,
         captchaToken,
       });
-      switch (response.status) {
-        case 200:
-          setAuthCookie("autorizado");
-          //TODO -> I should encrypted this in a not so far future
-          localStorage.setItem("user", JSON.stringify({ username }));
-          break;
-        case 401:
-        case 403:
-          throw new Error(
-            t("login.invalidCredentials") || "Invalid credentials"
-          );
 
-        default:
-          throw new Error(t("login.apiError") || "Login failed");
+      if (response.status === 200) {
+        setAuth(true);
+        sessionStorage.setItem("user", JSON.stringify({ username }));
+        navigate("/");
+        setSuccessMsg(t("login.success") || "Login successful");
+      } else {
+        throw new Error(t("login.invalidCredentials") || "Invalid credentials");
       }
-
-      setSuccessMsg(t("login.success") || "Login successful");
-    } catch (err) {
+    } catch (err: any) {
       console.error("Login error:", err);
       setError(err?.message || t("login.apiError") || "Login failed");
     } finally {
