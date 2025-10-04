@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LogIn from "./login";
+import LogIn from "./Login";
 
 describe("Test to render the login component", () => {
     test("should find the user input", () => {
