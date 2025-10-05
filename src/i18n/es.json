@@ -3,8 +3,18 @@
   "login": {
     "usernamePlaceholder": "Nombre de usuario",
     "passwordPlaceholder": "Contraseña",
-    "usernameError": "El nombre de usuario debe tener al menos 1 carácter.",
-    "passwordError": "La contraseña debe contener al menos una mayúscula, al menos un número y una longitud mínima de 4.",
-    "submitButton": "Iniciar sesión"
+    "usernameError": "Hubo un error",
+    "passwordError": "Hubo un error",
+    "submitButton": "Iniciar sesión",
+    "footerNote":"¿No tienes una cuenta? Regístrate"
+  },
+
+  "register": {
+    "title": "Registra tu usuario y crea tu nueva cuenta",
+    "usernamePlaceholder": "Nombre de usuario",
+    "passwordPlaceholder": "Contraseña",
+    "usernameError": "Debe tener al menos 4 caracteres",
+    "passwordError": "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial",
+    "submitButton": "Registrar"
   }
 }

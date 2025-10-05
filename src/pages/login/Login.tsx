@@ -25,11 +25,12 @@ const LogIn: React.FC = () => {
       setError(t("login.usernameError"));
       return false;
     }
-    // const contraseñaRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{4,}$/;
-    // if (!contraseñaRegex.test(password)) {
-    //   setError(t("login.passwordError"));
-    //   return false;
-    // }
+    const contraseñaRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/;
+
+    if (!contraseñaRegex.test(password)) {
+      setError(t("login.passwordError"));
+      return false;
+    }
     return true;
   };
 
@@ -172,15 +173,12 @@ const LogIn: React.FC = () => {
           </div>
 
           <div className="text-center text-sm text-gray-600">
-            <p>
+            <a
+              href="/register"
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
               {t("login.footerNote") || "Need an account?"}{" "}
-              <a
-                href="/register"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                {t("login.register") || "Sign up"}
-              </a>
-            </p>
+            </a>
           </div>
         </div>
       </main>

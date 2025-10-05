@@ -9,18 +9,18 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const handleAccountClick = () => {
+    //TODO -> change to /account when the page is ready
     navigate("/login");
   };
 
   return (
     <header className="w-full bg-zinc-950 text-gray-400 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* 🔹 First row */}
         <div className="flex items-center justify-between h-16 space-x-4">
           {/* Logo */}
           <div className="flex-shrink-0 text-xl font-bold text-indigo-700">
-            La casa del libro
+            <a href="/">La casa del libro</a>
           </div>
 
           {/* Search bar */}

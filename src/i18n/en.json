@@ -3,8 +3,18 @@
   "login": {
     "usernamePlaceholder": "Username",
     "passwordPlaceholder": "Password",
-    "usernameError": "",
-    "passwordError": "Password must contain at least one uppercase letter, one number, and be at least 4 characters long.",
-    "submitButton": "Log In"
+    "usernameError": "There was an error",
+    "passwordError": "There was an error",
+    "submitButton": "Log In",
+    "footerNote":"Need an account? Sign up"
+  },
+
+  "register": {
+    "title": "Create your account",
+    "usernamePlaceholder": "Username",
+    "passwordPlaceholder": "Password",
+    "usernameError": "Username must be at least 4 characters long",
+    "passwordError": "Password must be at least 8 characters long, contain an uppercase letter a number, and a special character",
+    "submitButton": "Sign Up"
   }
 }

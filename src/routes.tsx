@@ -4,12 +4,14 @@ import LogIn from "./pages/login/Login";
 import ErrorPage from "./pages/error/ErrorPage";
 import Terror from "./pages/terror/Terror";
 import ProtectedRoutes from "./utils/protectedRoutes/ProtectedRoutes";
+import Register from "./pages/register/Register";
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<LogIn />} />
+        <Route path="/register" element={<Register />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/*" element={<ErrorPage />} />
