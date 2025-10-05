@@ -14,13 +14,13 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="w-full bg-zinc-950 text-gray-400 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="w-full bg-zinc-950 text-gray-400 shadow-md py-3">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* 🔹 First row */}
         <div className="flex items-center justify-between h-16 space-x-4">
           {/* Logo */}
           <div className="flex-shrink-0 text-xl font-bold text-indigo-700">
-            <a href="/">La casa del libro</a>
+            <a href="/">The Online Library </a>
           </div>
 
           {/* Search bar */}
