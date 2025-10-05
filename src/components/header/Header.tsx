@@ -4,9 +4,13 @@ import PersonFill from "../../assets/icons/personFill";
 import ShoppingCar from "../../assets/icons/shoppingCar";
 import MenuBar from "../menuBar/MenuBar";
 import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
+import { useUserStore } from "../../store/useUserStore";
+import { UserRole } from "../../pages/login/Logintypes";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+
+  const { role } = useUserStore();
 
   const handleAccountClick = () => {
     //TODO -> change to /account when the page is ready
@@ -48,6 +52,15 @@ const Header: React.FC = () => {
               <PersonFill className="mr-1 h-5 w-5" />
               <span className="hidden sm:inline">My Account</span>
             </button>
+
+            {role === UserRole.ADMIN && (
+              <button
+                onClick={() => navigate("/books")}
+                className="flex items-center px-3 py-2 text-sm text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
+              >
+                📚 Admin CRUD
+              </button>
+            )}
 
             <button className="relative flex items-center px-3 py-2 text-sm text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">
               <ShoppingCar className="h-5 w-5" />
