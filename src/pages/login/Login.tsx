@@ -6,6 +6,9 @@ import axiosInstance from "../../utils/axios/AxiosInstance";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { useNavigate } from "react-router-dom";
 import { useAuthStorage } from "../../hooks/useAuthCookies";
+import { useUserStore } from "../../store/useUserStore";
+import { UserRole } from "./Logintypes";
+import { ApiPaths } from "../../utils/ApiPath";
 
 const LogIn: React.FC = () => {
   const { t } = useTranslation();
@@ -17,6 +20,7 @@ const LogIn: React.FC = () => {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const { setAuth } = useAuthStorage();
+  const { setUser } = useUserStore();
 
   const navigate = useNavigate();
 
@@ -44,15 +48,16 @@ const LogIn: React.FC = () => {
     try {
       setLoading(true);
 
-      const response = await axiosInstance.post("/login", {
+      const response = await axiosInstance.post(ApiPaths.auth.login, {
         username,
         password,
         captchaToken,
       });
 
       if (response.status === 200) {
-        setAuth(true);
-        sessionStorage.setItem("user", JSON.stringify({ username }));
+        setAuth(true); // tu authStore
+        const { username, role } = response.data;
+        setUser(username, role as UserRole);
         navigate("/");
         setSuccessMsg(t("login.success") || "Login successful");
       } else {
