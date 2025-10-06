@@ -10,7 +10,9 @@ import { UserRole } from "../../pages/login/Logintypes";
 const Header: React.FC = () => {
   const navigate = useNavigate();
 
-  const { role } = useUserStore();
+  const { role, _hasHydrated } = useUserStore();
+
+  if (!_hasHydrated) return null;
 
   const handleAccountClick = () => {
     //TODO -> change to /account when the page is ready
@@ -24,7 +26,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16 space-x-4">
           {/* Logo */}
           <div className="flex-shrink-0 text-xl font-bold text-indigo-700">
-            <a href="/">The Online Library </a>
+            <a href="/">Librium </a>
           </div>
 
           {/* Search bar */}
@@ -55,10 +57,10 @@ const Header: React.FC = () => {
 
             {role === UserRole.ADMIN && (
               <button
-                onClick={() => navigate("/books")}
+                onClick={() => navigate("/books-page")}
                 className="flex items-center px-3 py-2 text-sm text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
               >
-                📚 Admin CRUD
+                Agregar un libro
               </button>
             )}
 

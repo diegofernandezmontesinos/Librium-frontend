@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import GlobalLayout from "../../components/layouts/GlobalLayout";
 import axiosInstance from "../../utils/axios/AxiosInstance";
 import { useNavigate } from "react-router-dom";
+import { ApiPaths } from "../../utils/ApiPath";
 
 const Register: React.FC = () => {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ const Register: React.FC = () => {
     try {
       setLoading(true);
 
-      const response = await axiosInstance.post("/register", {
+      const response = await axiosInstance.post(ApiPaths.auth.register, {
         username,
         password,
       });

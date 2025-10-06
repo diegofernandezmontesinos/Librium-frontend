@@ -1,5 +1,6 @@
 // src/services/books.ts
-import axiosInstance from "../utils/axios/AxiosInstance";
+import axios from "axios";
+import { ApiPaths } from "../utils/ApiPath";
 
 export interface Book {
   id?: number;
@@ -11,22 +12,26 @@ export interface Book {
 
 export const BookService = {
   getAll: async () => {
-    const res = await axiosInstance.get<Book[]>("/books");
+    const res = await axios.get<Book[]>(ApiPaths.books.getAll);
     return res.data;
   },
+
   getById: async (id: number) => {
-    const res = await axiosInstance.get<Book>(`/books/${id}`);
+    const res = await axios.get<Book>(ApiPaths.books.getById(id));
     return res.data;
   },
+
   create: async (book: Book) => {
-    const res = await axiosInstance.post<Book>("/books", book);
+    const res = await axios.post<Book>(ApiPaths.books.create, book);
     return res.data;
   },
-  update: async (id: number, book: Partial<Book>) => {
-    const res = await axiosInstance.put<Book>(`/books/${id}`, book);
+
+  update: async (id: number, book: Book) => {
+    const res = await axios.put<Book>(ApiPaths.books.update(id), book);
     return res.data;
   },
+
   delete: async (id: number) => {
-    await axiosInstance.delete(`/books/${id}`);
+    await axios.delete(ApiPaths.books.delete(id));
   },
 };
