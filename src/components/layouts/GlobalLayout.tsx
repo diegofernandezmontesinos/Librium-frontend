@@ -8,12 +8,9 @@ interface GlobalLayoutProps {
 
 const GlobalLayout: React.FC<GlobalLayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-slate-900">
       <Header />
-
-      {/* El main ocupa todo el espacio disponible */}
-      <main className="flex-1">{children}</main>
-
+      <main className="p-4 sm:p-6 lg:p-10">{children}</main>
       <Footer />
     </div>
   );
