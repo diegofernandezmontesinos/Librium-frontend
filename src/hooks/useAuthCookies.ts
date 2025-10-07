@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { decrypt, encrypt } from "../utils/encrypter/Encrypter";
+import { decrypt, encrypt } from "@/utils/encrypter/Encrypter";
 
 const STORAGE_KEY = "isAuthorized";
 

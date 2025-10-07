@@ -1,6 +1,6 @@
 // src/services/books.ts
 import axios from "axios";
-import { ApiPaths } from "../utils/ApiPath";
+import { ApiPaths } from "@/utils/ApiPath";
 
 export interface Book {
   id?: number;

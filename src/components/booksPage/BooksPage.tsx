@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Book, BookService } from "../../services/books";
-import GlobalLayout from "../layouts/GlobalLayout";
+import { Book, BookService } from "@/services/books";
+import GlobalLayout from "@/components/layouts/GlobalLayout";
 
 const BooksPage: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
