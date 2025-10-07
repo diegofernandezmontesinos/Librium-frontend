@@ -8,30 +8,31 @@ export interface Book {
   author: string;
   description?: string;
   year?: number;
+  image_url?: string;
 }
 
 export const BookService = {
-  getAll: async () => {
-    const res = await axios.get<Book[]>(ApiPaths.books.getAll);
-    return res.data;
+  getAll: async (): Promise<Book[]> => {
+    const { data } = await axios.get(ApiPaths.books.getAll);
+    return data;
   },
 
-  getById: async (id: number) => {
-    const res = await axios.get<Book>(ApiPaths.books.getById(id));
-    return res.data;
+  createFormData: async (formData: FormData) => {
+    const { data } = await axios.post(ApiPaths.books.create, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return data;
   },
 
-  create: async (book: Book) => {
-    const res = await axios.post<Book>(ApiPaths.books.create, book);
-    return res.data;
-  },
-
-  update: async (id: number, book: Book) => {
-    const res = await axios.put<Book>(ApiPaths.books.update(id), book);
-    return res.data;
+  updateFormData: async (id: number, formData: FormData) => {
+    const { data } = await axios.put(ApiPaths.books.update(id), formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return data;
   },
 
   delete: async (id: number) => {
-    await axios.delete(ApiPaths.books.delete(id));
+    const { data } = await axios.delete(ApiPaths.books.delete(id));
+    return data;
   },
 };
