@@ -6,17 +6,25 @@ import MenuBar from "../menuBar/MenuBar";
 import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 import { useUserStore } from "../../store/useUserStore";
 import { UserRole } from "../../pages/login/Logintypes";
+import { useAuthStorage } from "@/hooks/useAuthCookies";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-
   const { role, _hasHydrated } = useUserStore();
+  const { getAuth } = useAuthStorage();
 
   if (!_hasHydrated) return null;
 
   const handleAccountClick = () => {
-    //TODO -> change to /account when the page is ready
-    navigate("/login");
+    const isAuthorized = getAuth();
+
+    if (isAuthorized) {
+      // 🔒 Usuario autenticado → ir al área personal
+      navigate("/personal-area");
+    } else {
+      // 🔑 Usuario no autenticado → ir al login
+      navigate("/login");
+    }
   };
 
   return (
@@ -46,6 +54,7 @@ const Header: React.FC = () => {
 
             <LanguageSwitcher />
 
+            {/* ✅ Validación de sesión */}
             <button
               onClick={handleAccountClick}
               className="flex items-center px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition"
@@ -54,6 +63,7 @@ const Header: React.FC = () => {
               <span className="hidden sm:inline">Mi Cuenta</span>
             </button>
 
+            {/* Solo visible para admin */}
             {role === UserRole.ADMIN && (
               <button
                 onClick={() => navigate("/books-page")}
@@ -63,13 +73,14 @@ const Header: React.FC = () => {
               </button>
             )}
 
-            <button className="relative flex items-center px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition">
+            {/* Carrito */}
+            <button
+              onClick={() => navigate("/my-cart")}
+              className="relative flex items-center px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition"
+            >
+              <ShoppingCar className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-bold text-white bg-indigo-600 rounded-full">
-                <button
-                  onClick={() => navigate("/my-cart")}
-                >
-                  <ShoppingCar className="h-5 w-5" />
-                </button>
+                3
               </span>
             </button>
           </div>

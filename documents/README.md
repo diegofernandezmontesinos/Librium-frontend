@@ -7,8 +7,8 @@ The app is a clone of a online library
 
 # for UI: 
 
-npm create vite@latest onlineLibrary
-cd onlineLibrary
+npm create vite@latest librium
+cd Librium-frontend
 npm install
 npm run dev
 

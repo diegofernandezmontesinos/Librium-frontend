@@ -1,6 +1,11 @@
 // src/AppRoutes.tsx
 import { Suspense, lazy, type ReactNode, useEffect, useState } from "react";
-import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 
 // LAZY PAGES / LAYOUTS
@@ -15,6 +20,7 @@ const BooksPage = lazy(() => import("./components/booksPage/BooksPage"));
 // PROTECTED ROUTES
 import ProtectedRoutes from "./utils/protectedRoutes/ProtectedRoutes";
 import { CartSummary } from "./components/shoppingCart/cartSummary/CartSummary";
+import PersonalArea from "./components/personalArea/PersonalArea";
 
 // ----------------- UI LOADING -----------------
 function Fallback() {
@@ -55,7 +61,9 @@ function Fallback() {
             d="M4 12a8 8 0 018-8v8z"
           />
         </svg>
-        <span className="text-primaryColor text-lg font-medium">Cargando...</span>
+        <span className="text-primaryColor text-lg font-medium">
+          Cargando...
+        </span>
       </div>
     </div>
   );
@@ -67,44 +75,43 @@ function PublicLayout() {
 }
 
 // ----------------- ROUTER -----------------
-const router = createBrowserRouter(
-  [
-    {
-      element: (
-        <Suspense fallback={<Fallback />}>
-          <GlobalLayout />
-        </Suspense>
-      ),
-      errorElement: (
-        <Suspense fallback={<Fallback />}>
-          <ErrorPage />
-        </Suspense>
-      ),
-      children: [
-        // PUBLIC ROUTES
-        {
-          element: <PublicLayout />,
-          children: [
-            { path: "/login", element: <LogIn /> },
-            { path: "/register", element: <Register /> },
-          ],
-        },
-        // PROTECTED ROUTES
-        {
-          element: <ProtectedRoutes />,
-          children: [
-            { path: "/", element: <Home /> },
-            { path: "/terror", element: <Terror /> },
-            { path: "/books-page", element: <BooksPage /> },
-             { path: "/my-cart", element: <CartSummary /> },
-          ],
-        },
-        // FALLBACK
-        { path: "/*", element: <ErrorPage /> },
-      ],
-    },
-  ]
-);
+const router = createBrowserRouter([
+  {
+    element: (
+      <Suspense fallback={<Fallback />}>
+        <GlobalLayout />
+      </Suspense>
+    ),
+    errorElement: (
+      <Suspense fallback={<Fallback />}>
+        <ErrorPage />
+      </Suspense>
+    ),
+    children: [
+      // PUBLIC ROUTES
+      {
+        element: <PublicLayout />,
+        children: [
+          { path: "/login", element: <LogIn /> },
+          { path: "/register", element: <Register /> },
+        ],
+      },
+      // PROTECTED ROUTES
+      {
+        element: <ProtectedRoutes />,
+        children: [
+          { path: "/", element: <Home /> },
+          { path: "/terror", element: <Terror /> },
+          { path: "/books-page", element: <BooksPage /> },
+          { path: "/my-cart", element: <CartSummary /> },
+          { path:"/personal-area", element: <PersonalArea />} 
+        ],
+      },
+      // FALLBACK
+      { path: "/*", element: <ErrorPage /> },
+    ],
+  },
+]);
 
 // ----------------- COMPONENT EXPORT -----------------
 const AppRoutes: React.FC = () => (
