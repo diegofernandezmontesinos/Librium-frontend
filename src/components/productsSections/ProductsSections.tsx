@@ -2,6 +2,8 @@
 import { ProductCard } from "@/components/shoppingCart/productCard/ProductCard";
 import { HomeEnum } from "@/pages/home/HomeTypes";
 import { productsBySection } from "@/mocks/ProductBySections";
+import { useEffect, useState } from "react";
+import { Book, BookService } from "@/services/booksService";
 
 interface ProductSectionProps {
   section: HomeEnum;
@@ -16,7 +18,15 @@ export const ProductSection = ({
   subtitle,
   bgColor = "bg-slate-900",
 }: ProductSectionProps) => {
-  const products = productsBySection[section] ?? [];
+
+  const [products, setProducts] = useState<Book[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await BookService.getAll(section);
+      setProducts(data);
+    })();
+  }, [section]);
 
   return (
     <section className={`${bgColor} w-full py-16`}>

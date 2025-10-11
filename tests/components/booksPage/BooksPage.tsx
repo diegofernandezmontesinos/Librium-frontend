@@ -1,18 +1,91 @@
-import React from "react";
-import { BookSection } from "./BooksTypes";
-import {
-  books,
-  editingId,
-  form,
-  handleDelete,
-  handleEdit,
-  handleFileChange,
-  handleSubmit,
-  preview,
-  setForm,
-} from "./BooksPageLogic";
+import React, { useEffect, useState } from "react";
+import { Book, BookService } from "@/services/books";
 
 const BooksPage: React.FC = () => {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [form, setForm] = useState<Book>({
+    title: "",
+    author: "",
+    description: "",
+    year: undefined,
+    image_url: "",
+  });
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const fetchBooks = async () => {
+    try {
+      setLoading(true);
+      const data = await BookService.getAll();
+      setBooks(data);
+    } catch {
+      setError("Error loading books");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = e.target.files?.[0];
+    if (selected) {
+      setFile(selected);
+      setPreview(URL.createObjectURL(selected));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("title", form.title);
+      formData.append("author", form.author);
+      if (form.description) formData.append("description", form.description);
+      if (form.year) formData.append("year", String(form.year));
+      if (form.image_url) formData.append("image_url", form.image_url);
+      if (file) formData.append("image", file);
+
+      if (editingId) {
+        await BookService.updateFormData(editingId, formData);
+      } else {
+        await BookService.createFormData(formData);
+      }
+
+      setForm({
+        title: "",
+        author: "",
+        description: "",
+        year: undefined,
+        image_url: "",
+      });
+      setFile(null);
+      setPreview(null);
+      setEditingId(null);
+      fetchBooks();
+    } catch {
+      setError("Error saving book");
+    }
+  };
+
+  const handleEdit = (book: Book) => {
+    setForm(book);
+    setEditingId(book.id || null);
+    setPreview(book.image_url || null);
+  };
+
+  const handleDelete = async (id: number) => {
+    if (confirm("Are you sure you want to delete this book?")) {
+      await BookService.delete(id);
+      fetchBooks();
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-900 text-white py-10 px-6">
       <div className="max-w-6xl mx-auto">
@@ -62,22 +135,6 @@ const BooksPage: React.FC = () => {
                 setForm({ ...form, year: Number(e.target.value) })
               }
             />
-            {/* Select para la sección */}
-            <select
-              value={form.section || ""}
-              onChange={(e) =>
-                setForm({ ...form, section: e.target.value as BookSection })
-              }
-              className="border rounded-lg p-3 focus:ring-2 focus:ring-indigo-500"
-              required
-            >
-              <option value="">Select Section</option>
-              {Object.values(BookSection).map((sec) => (
-                <option key={sec} value={sec}>
-                  {sec}
-                </option>
-              ))}
-            </select>
             <input
               type="text"
               placeholder="Image URL (optional)"
@@ -85,17 +142,6 @@ const BooksPage: React.FC = () => {
               value={form.image_url || ""}
               onChange={(e) => setForm({ ...form, image_url: e.target.value })}
             />
-            <input
-              type="number"
-              placeholder="Price"
-              className="border rounded-lg p-3 focus:ring-2 focus:ring-indigo-500"
-              value={form.price || 0}
-              onChange={(e) =>
-                setForm({ ...form, price: Number(e.target.value) })
-              }
-              required
-            />
-
             <div className="md:col-span-2">
               <input
                 type="file"

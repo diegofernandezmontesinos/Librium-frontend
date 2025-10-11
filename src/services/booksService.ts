@@ -9,11 +9,15 @@ export interface Book {
   description?: string;
   year?: number;
   image_url?: string;
+  price: number;
 }
 
 export const BookService = {
-  getAll: async (): Promise<Book[]> => {
-    const { data } = await axios.get(ApiPaths.books.getAll);
+  getAll: async (section?: string): Promise<Book[]> => {
+    const url = section
+      ? `${ApiPaths.books.getAll}?section=${section}`
+      : ApiPaths.books.getAll;
+    const { data } = await axios.get(url);
     return data;
   },
 

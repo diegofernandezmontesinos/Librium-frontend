@@ -8,10 +8,10 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: loadedEnv.VITE_BASE_URL,
-    plugins: [react(), tailwindcss(), tsconfigPaths()], // ✅ esto ya activa los alias
+    plugins: [react(), tailwindcss(), tsconfigPaths()],
     resolve: {
       alias: {
-        "@": "/src", // ✅ asegúrate de agregar esto por si acaso
+        "@": "/src",
       },
     },
     server: {
