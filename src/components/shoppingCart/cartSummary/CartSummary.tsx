@@ -1,11 +1,26 @@
 import { useCart } from "react-use-cart";
 import { CartItem } from "../cartItem/CartItem";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Modal } from "@/components/modal/modal";
 
 export function CartSummary() {
   const { items, cartTotal, emptyCart } = useCart();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
   const ivaRate = 0.21;
-  const ivaAmount = cartTotal * ivaRate;
-  const totalWithIva = cartTotal + ivaAmount;
+
+  const safeCartTotal = cartTotal ?? 0;
+  const ivaAmount = safeCartTotal * ivaRate;
+  const totalWithIva = safeCartTotal + ivaAmount;
+  const subtotal = items.reduce(
+    (acc, item) => acc + (item.price ?? 0) * (item.quantity ?? 1),
+    0
+  );
+
+  if (!items) {
+    return <p className="text-white text-center mt-10">Cargando carrito...</p>;
+  }
 
   if (items.length === 0) {
     return (
@@ -15,50 +30,75 @@ export function CartSummary() {
     );
   }
 
+  const handlePayment = () => {
+    // Abrimos modal y bloqueamos interacción con el fondo
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    // Cerramos modal y redirigimos a home
+    setIsModalOpen(false);
+    emptyCart(); // opcional, vaciar carrito tras pagar
+    navigate("/");
+  };
+
   return (
-    <div className="bg-slate-900 text-white shadow-lg rounded-2xl p-6 mx-auto mt-8 w-[80%] max-w-5xl">
-      <h2 className="text-2xl font-bold mb-6 text-emerald-400 text-center">
-        Resumen de compra
-      </h2>
+    <>
+      <div className="bg-slate-900 text-white shadow-lg rounded-2xl p-6 mx-auto mt-8 w-[80%] max-w-5xl">
+        <h2 className="text-2xl font-bold mb-6 text-emerald-400 text-center">
+          Resumen de compra
+        </h2>
 
-      <div className="space-y-4 mb-6">
-        {items.map((item) => (
-          <CartItem
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            price={item.price}
-            quantity={item.quantity}
-          />
-        ))}
-      </div>
+        <div className="space-y-4 mb-6">
+          {items.map((item) => (
+            <CartItem
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              price={item.price ?? 0}
+              quantity={item.quantity ?? 1}
+            />
+          ))}
+        </div>
 
-      <div className="border-t border-gray-700 pt-4 text-right space-y-1">
-        <div className="flex justify-between">
-          <span>Subtotal:</span>
-          <span>${cartTotal.toFixed(2)}</span>
+        <div className="border-t border-gray-700 pt-4 text-right space-y-1">
+          <div className="flex justify-between">
+            <span>Subtotal:</span>
+            <span>${subtotal ?? 0}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>IVA (21%):</span>
+            <span>${ivaAmount.toFixed(2) ?? 0}</span>
+          </div>
+          <div className="flex justify-between font-semibold text-lg mt-2 text-emerald-400">
+            <span>Total:</span>
+            <span>${totalWithIva.toFixed(2) ?? 0}</span>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <span>IVA (21%):</span>
-          <span>${ivaAmount.toFixed(2)}</span>
-        </div>
-        <div className="flex justify-between font-semibold text-lg mt-2 text-emerald-400">
-          <span>Total:</span>
-          <span>${totalWithIva.toFixed(2)}</span>
-        </div>
-      </div>
 
-      <div className="mt-6 flex justify-center gap-4">
-        <button
-          onClick={emptyCart}
-          className="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl transition duration-200"
-        >
-          Vaciar carrito
-        </button>
-        <button className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl transition duration-200">
-          Pagar
-        </button>
+        <div className="mt-6 flex justify-center gap-4">
+          <button
+            onClick={emptyCart}
+            disabled={items.length === 0}
+            className="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl transition duration-200 disabled:opacity-50"
+          >
+            Vaciar carrito
+          </button>
+          <button
+            disabled={items.length === 0}
+            className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl transition duration-200 disabled:opacity-50"
+            onClick={handlePayment}
+          >
+            Pagar
+          </button>
+        </div>
       </div>
-    </div>
+      <Modal
+        isOpen={isModalOpen}
+        title="¡Transacción realizada!"
+        message="Tu compra se ha procesado correctamente."
+        onClose={handleModalClose}
+      />
+    </>
   );
 }
