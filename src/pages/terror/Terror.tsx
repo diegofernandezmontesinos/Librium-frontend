@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
-import "./Terror.css";
 
 function Terror() {
   const [books, setBooks] = useState([]);
@@ -27,7 +26,7 @@ function Terror() {
     <>
       <Header />
       <div>Terror Page</div>
-      <div className="book-item">
+      <div className="flex flex-row">
         {books.map((book) => {
           return (
             <div key={book.id}>

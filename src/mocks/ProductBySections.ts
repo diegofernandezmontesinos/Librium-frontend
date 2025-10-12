@@ -1,8 +1,10 @@
 // src/mocks/productsBySection.ts
-import { HomeEnum } from "@/pages/home/HomeTypes";
+
+import { SectionEnum } from "@/utils/global/globalTypes";
+
 
 export const productsBySection = {
-  [HomeEnum.TERROR]: [
+  [SectionEnum.TERROR]: [
     {
       id: "t1",
       name: "It",
@@ -16,7 +18,7 @@ export const productsBySection = {
       image: "https://picsum.photos/id/1025/300/400",
     },
   ],
-  [HomeEnum.AUTHOR]: [
+  [SectionEnum.AUTHOR]: [
     {
       id: "a1",
       name: "Cien años de soledad",
@@ -24,7 +26,7 @@ export const productsBySection = {
       image: "https://picsum.photos/id/1005/300/400",
     },
   ],
-  [HomeEnum.CLUB]: [
+  [SectionEnum.CLUB]: [
     {
       id: "c1",
       name: "Libro del mes",
@@ -32,7 +34,7 @@ export const productsBySection = {
       image: "https://picsum.photos/id/1016/300/400",
     },
   ],
-  [HomeEnum.KIDS]: [
+  [SectionEnum.KIDS]: [
     {
       id: "k1",
       name: "El principito",
@@ -40,7 +42,7 @@ export const productsBySection = {
       image: "https://picsum.photos/id/1018/300/400",
     },
   ],
-  [HomeEnum.NEW]: [
+  [SectionEnum.NEW]: [
     {
       id: "n1",
       name: "Novedades del mes",

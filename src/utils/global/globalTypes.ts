@@ -1,0 +1,15 @@
+export enum SectionEnum {
+  TOP_SELLER = "topSeller",
+  FICTION = "fiction",
+  KIDS = "kids",
+  SPANISH_BOOKS = "spanishBooks",
+  EBOOKS = "ebooks",
+  OFFERTS = "offerts",
+  TECHNICAL_BOOKS = "technicalBooks",
+  TERROR = "terror",
+  SCIENCE = "science",
+  HISTORY = "history",
+  AUTHOR = "author",
+  CLUB = "club",
+  NEW = "new",
+}
