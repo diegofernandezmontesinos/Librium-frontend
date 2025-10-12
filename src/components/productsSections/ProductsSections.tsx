@@ -13,7 +13,7 @@ export const ProductSection = ({
 
   useEffect(() => {
     (async () => {
-      const data = await BookService.getAll(section);
+      const data = await BookService.getAll(section ? section : undefined);
       setProducts(data);
     })();
   }, [section]);

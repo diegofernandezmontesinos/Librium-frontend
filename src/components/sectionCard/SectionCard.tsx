@@ -1,5 +1,3 @@
-import { Button } from "semantic-ui-react"; // Se mantiene por la dependencia original
-
 interface SectionCardProps {
   title: string;
   subtitle?: string;
@@ -35,16 +33,18 @@ const SectionCard = ({
         <p className="text-lg text-gray-300 mb-6">{subtitle}</p>
       </div>
 
-      <Button
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick();
-        }}
-        className="w-full max-w-xs py-3 font-extrabold text-gray-900 bg-emerald-400 rounded-full 
-                   shadow-lg hover:bg-emerald-300 transition duration-300 uppercase tracking-wider"
-      >
-        {buttonText}
-      </Button>
+      <div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick();
+          }}
+          className="w-full max-w-xs py-3 font-extrabold text-gray-900 bg-emerald-400 rounded-full 
+        shadow-lg hover:bg-emerald-300 transition duration-300 uppercase tracking-wider"
+        >
+          {buttonText}
+        </button>
+      </div>
     </article>
   );
 };

@@ -1,7 +1,9 @@
+// src/pages/home/Home.tsx
 import { useNavigate } from "react-router-dom";
 import SectionCard from "@/components/sectionCard/SectionCard";
 import { ProductSection } from "@/components/productsSections";
 import { SectionEnum } from "@/utils/global/globalTypes";
+import { useBooks } from "@/hooks/useBooks";
 
 const MAIN_SECTIONS = [
   {
@@ -24,10 +26,19 @@ const MAIN_SECTIONS = [
 const Home = () => {
   const navigate = useNavigate();
 
+  // Todos los libros
+  const { books: allBooks, loading: loadingAll, error: errorAll } = useBooks();
+
+  // Libros por sección
+  const sectionsData = MAIN_SECTIONS.map(({ type }) => ({
+    type,
+    ...useBooks(type.toLowerCase()), // books, loading, error
+  }));
+
   return (
     <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center overflow-x-hidden">
-      {/* 🏛️ Hero Section */}
-     <section className="w-full max-w-7xl h-[40vh] sm:h-[50vh] md:h-[60vh] mt-10 overflow-hidden rounded-xl shadow-2xl relative">
+      {/* Hero */}
+      <section className="w-full max-w-7xl h-[40vh] sm:h-[50vh] md:h-[60vh] mt-10 overflow-hidden rounded-xl shadow-2xl relative">
         <img
           src="src/assets/images/librarybookshell.jpg"
           alt="Biblioteca"
@@ -44,34 +55,48 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 📚 Secciones de productos */}
-      <section className="w-full grid gap-10 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl">
-        {MAIN_SECTIONS.map(({ title, subtitle, type }) => (
-          <ProductSection key={type} title={title} subtitle={subtitle} section={type} />
-        ))}
+      {/* Todos los libros */}
+      <section className="w-full grid gap-6 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl">
+        <h2 className="text-2xl font-bold text-emerald-400 mb-4">
+          Todos los libros
+        </h2>
+        {loadingAll && <p>Cargando libros...</p>}
+        {errorAll && <p>Error: {errorAll}</p>}
+        {!loadingAll && allBooks.length > 0 && (
+          <ProductSection title="" subtitle="" />
+        )}
+        {!loadingAll && allBooks.length === 0 && (
+          <p>No hay libros disponibles.</p>
+        )}
       </section>
 
-      {/* ✨ Separador visual */}
-      <section className="grid place-items-center my-16 w-full px-4 text-center">
-        <p className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-emerald-400 leading-snug">
-          Explora un Nuevo Universo Literario
-        </p>
-        <hr className="mt-4 border border-emerald-400 w-2/3 sm:w-1/3" />
-      </section>
+      {/* Secciones */}
+      {sectionsData.map(({ type, loading, error }) => (
+        <section
+          key={type}
+          className="w-full grid gap-6 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl"
+        >
+          <h2 className="text-2xl font-bold text-emerald-400 mb-4">
+            {type
+              .replace(/([A-Z])/g, " $1")
+              .replace(/^./, (s) => s.toUpperCase())}
+          </h2>
 
-      {/* 🧩 Cards promocionales */}
-      <section
-        className="
-          grid grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-3
-          gap-6 sm:gap-8
-          px-4 sm:px-6 md:px-8
-          max-w-7xl
-          w-full
-          mb-20
-        "
-      >
+          {loading && <p>Cargando libros de {type}...</p>}
+          {error && <p>Error: {error}</p>}
+
+          {!loading && !error && (
+            <ProductSection
+              section={type as SectionEnum}
+              title=""
+              subtitle=""
+            />
+          )}
+        </section>
+      ))}
+
+      {/* Cards promocionales */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-6 md:px-8 max-w-7xl w-full mb-20">
         {MAIN_SECTIONS.map((item) => (
           <SectionCard
             key={item.type}
@@ -83,7 +108,7 @@ const Home = () => {
         ))}
       </section>
 
-      {/* 📘 Footer */}
+      {/* Footer */}
       <footer className="grid place-items-center w-full bg-slate-800 py-6 text-gray-400 text-xs sm:text-sm">
         <p>
           © {new Date().getFullYear()} Librium Books — Todos los derechos

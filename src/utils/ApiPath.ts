@@ -2,6 +2,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const AUTH_PREFIX_SECTION = import.meta.env.VITE_AUTH_PREFIX_SECTION;
 const BOOKS_PREFIX_SECTION = import.meta.env.VITE_BOOKS_PREFIX_SECTION;
 const CART_PREFIX_SECTION = import.meta.env.VITE_CART_PREFIX_SECTION;
+const BOOKS_PREFIX_SECTION_FOR_SECTION = import.meta.env.VITE_BOOKS_PREFIX_SECTION_FOR_SECTION;
 
 export const ApiPaths = {
   auth: {
@@ -15,6 +16,7 @@ export const ApiPaths = {
     create: `${API_URL}${BOOKS_PREFIX_SECTION}/`, // POST
     update: (id: number) => `${API_URL}${BOOKS_PREFIX_SECTION}/${id}`, // PUT
     delete: (id: number) => `${API_URL}${BOOKS_PREFIX_SECTION}/${id}`, // DELETE
+    sections: (section: string) => `${API_URL}${BOOKS_PREFIX_SECTION}${BOOKS_PREFIX_SECTION_FOR_SECTION}=${section}`, // GETBYSECTION
   },
   cart: {
     getByUser: (userId: number) => `${API_URL}${CART_PREFIX_SECTION}/${userId}`, // GET

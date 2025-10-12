@@ -1,4 +1,5 @@
 export enum SectionEnum {
+  ALL = "all",
   TOP_SELLER = "topSeller",
   FICTION = "fiction",
   KIDS = "kids",

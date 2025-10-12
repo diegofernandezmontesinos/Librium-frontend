@@ -1,6 +1,6 @@
-// src/services/books.ts
 import axios from "axios";
 import { ApiPaths } from "@/utils/ApiPath";
+import { SectionEnum } from "@/utils/global/globalTypes";
 
 export interface Book {
   id?: number;
@@ -9,16 +9,18 @@ export interface Book {
   description?: string;
   year?: number;
   image_url?: string;
-  price: number;
+  price?: number;
+  cover_url?: string;
 }
 
 export const BookService = {
-  getAll: async (section?: string): Promise<Book[]> => {
+  async getAll(section?: SectionEnum): Promise<Book[]> {
     const url = section
-      ? `${ApiPaths.books.getAll}?section=${section}`
-      : ApiPaths.books.getAll;
+      ? `${ApiPaths.books.sections(section)}`
+      : `${ApiPaths.books.getAll}`;
+
     const { data } = await axios.get(url);
-    return data;
+    return Array.isArray(data.items) ? data.items : [];
   },
 
   createFormData: async (formData: FormData) => {

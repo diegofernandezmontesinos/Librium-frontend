@@ -1,10 +1,6 @@
 // src/AppRoutes.tsx
-import { Suspense, lazy,useEffect, useState } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
-} from "react-router-dom";
+import { Suspense, lazy, useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 
 // LAZY PAGES / LAYOUTS
@@ -13,7 +9,11 @@ const Home = lazy(() => import("./pages/home/Home"));
 const LogIn = lazy(() => import("./pages/login/Login"));
 const Register = lazy(() => import("./pages/register/Register"));
 const ErrorPage = lazy(() => import("./pages/error/ErrorPage"));
-const Terror = lazy(() => import("./pages/terror/Terror"));
+const Terror = lazy(() => import("./pages/sections/Terror"));
+const Tech = lazy(() => import("./pages/sections/TechnicalBooksPage"));
+const Fiction = lazy(() => import("./pages/sections/FictionPage"));
+const Kids = lazy(() => import("./pages/sections/KidsPage"));
+const History = lazy(() => import("./pages/sections/HistoryPage"));
 const BooksPage = lazy(() => import("./components/booksPage/BooksPage"));
 
 // PROTECTED ROUTES
@@ -95,6 +95,10 @@ const router = createBrowserRouter([
           { path: "/register", element: <Register /> },
           { path: "/", element: <Home /> },
           { path: "/terror", element: <Terror /> },
+          { path: "/fiction", element: <Fiction /> },
+          { path: "/tech", element: <Tech /> },
+          { path: "/kids", element: <Kids /> },
+          { path: "/history", element: <History /> },
         ],
       },
       // PROTECTED ROUTES

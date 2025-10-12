@@ -1,7 +1,7 @@
 import { SectionEnum } from "@/utils/global/globalTypes";
 
 export interface ProductSectionProps {
-  section: SectionEnum;
+  section?: SectionEnum;
   title: string;
   subtitle?: string;
   bgColor?: string;
