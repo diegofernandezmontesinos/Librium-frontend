@@ -85,13 +85,13 @@ const Header: React.FC = () => {
               <input
                 type="search"
                 placeholder="Busca por título, autor, género, ISBN..."
-                className="w-full px-4 py-2 border rounded-full focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm text-gray-900"
+                className="w-fix px-4 py-2 border rounded-full focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm text-white"
               />
             </div>
 
             {/* Botones */}
             <div className="flex items-center justify-end gap-2 sm:gap-3">
-              <button className="flex items-center px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition">
+              <button className="flex items-center px-4 py-2 text-sm cursor-pointer rounded-full hover:bg-indigo-500 hover:text-white transition">
                 <GeolocationIcon className="mr-2 h-5 w-5" />
                 <span className="hidden sm:inline">Librerías</span>
               </button>
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
 
               <button
                 onClick={handleAccountClick}
-                className="flex items-center px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition"
+                className="flex items-center px-4 py-2 text-sm  rounded-full hover:bg-indigo-500 hover:text-white transition"
               >
                 <PersonFill className="mr-2 h-5 w-5" />
                 <span className="hidden sm:inline">Mi Cuenta</span>
@@ -117,10 +117,10 @@ const Header: React.FC = () => {
 
               <button
                 onClick={() => navigate("/my-cart")}
-                className="relative flex items-center px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition"
+                className="relative flex items-center px-4 py-2 text-sm rounded-full hover:bg-indigo-500 hover:text-white transition"
               >
                 <ShoppingCar className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-bold text-white bg-indigo-600 rounded-full">
+                <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-bold text-white bg-indigo-600  rounded-full">
                   3
                 </span>
               </button>
@@ -132,7 +132,7 @@ const Header: React.FC = () => {
             <input
               type="search"
               placeholder="Busca por título, autor, género, ISBN..."
-              className="w-full px-4 py-2 border rounded-full focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm text-gray-900"
+              className="w-full px-4 py-2 border rounded-full focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm text-white"
             />
           </div>
         </div>
