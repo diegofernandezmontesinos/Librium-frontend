@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { ModalProps } from "./modalTypes";
 
 export const Modal: FC<ModalProps> = ({ isOpen, title, message, onClose }) => {

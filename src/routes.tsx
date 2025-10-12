@@ -1,10 +1,9 @@
 // src/AppRoutes.tsx
-import { Suspense, lazy, type ReactNode, useEffect, useState } from "react";
+import { Suspense, lazy,useEffect, useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
-  Navigate,
 } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 
