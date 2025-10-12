@@ -94,17 +94,17 @@ const router = createBrowserRouter([
         children: [
           { path: "/login", element: <LogIn /> },
           { path: "/register", element: <Register /> },
+          { path: "/", element: <Home /> },
+          { path: "/terror", element: <Terror /> },
         ],
       },
       // PROTECTED ROUTES
       {
         element: <ProtectedRoutes />,
         children: [
-          { path: "/", element: <Home /> },
-          { path: "/terror", element: <Terror /> },
           { path: "/books-page", element: <BooksPage /> },
           { path: "/my-cart", element: <CartSummary /> },
-          { path:"/personal-area", element: <PersonalArea />} 
+          { path: "/personal-area", element: <PersonalArea /> },
         ],
       },
       // FALLBACK

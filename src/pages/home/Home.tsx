@@ -1,23 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import SectionCard from "@/components/sectionCard/SectionCard";
 import { ProductSection } from "@/components/productsSections";
-import { HomeEnum } from "./HomeTypes";
+import { SectionEnum } from "@/utils/global/globalTypes";
 
 const MAIN_SECTIONS = [
   {
     title: "Terror",
     subtitle: "Historias que no te dejarán dormir.",
-    type: HomeEnum.TERROR,
+    type: SectionEnum.TERROR,
   },
   {
     title: "Autores Firmados",
     subtitle: "Piezas de colección únicas.",
-    type: HomeEnum.AUTHOR,
+    type: SectionEnum.AUTHOR,
   },
   {
     title: "Club de Lectura",
     subtitle: "Acceso a eventos y descuentos.",
-    type: HomeEnum.CLUB,
+    type: SectionEnum.CLUB,
   },
 ];
 
