@@ -4,6 +4,7 @@ import SectionCard from "@/components/sectionCard/SectionCard";
 import { ProductSection } from "@/components/productsSections";
 import { SectionEnum } from "@/utils/global/globalTypes";
 import { useBooks } from "@/hooks/useBooks";
+import { useSearchStore } from "@/store/useSearchStore";
 
 const MAIN_SECTIONS = [
   {
@@ -25,6 +26,7 @@ const MAIN_SECTIONS = [
 
 const Home = () => {
   const navigate = useNavigate();
+  const { searchTerm } = useSearchStore();
 
   // Todos los libros
   const { books: allBooks, loading: loadingAll, error: errorAll } = useBooks();
@@ -34,6 +36,18 @@ const Home = () => {
     type,
     ...useBooks(type.toLowerCase()), // books, loading, error
   }));
+
+  // 🔎 Filtrado en tiempo real
+  const filteredBooks = allBooks?.filter((book) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      book.title.toLowerCase().includes(term) ||
+      book.author.toLowerCase().includes(term) ||
+      book.section?.toLowerCase().includes(term)
+    );
+  });
+
+  const showFiltered = searchTerm.trim().length > 0;
 
   return (
     <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center overflow-x-hidden">
@@ -55,58 +69,82 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Todos los libros */}
-      <section className="w-full grid gap-6 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl">
-        <h2 className="text-2xl font-bold text-emerald-400 mb-4">
-          Todos los libros
-        </h2>
-        {loadingAll && <p>Cargando libros...</p>}
-        {errorAll && <p>Error: {errorAll}</p>}
-        {!loadingAll && allBooks.length > 0 && (
-          <ProductSection title="" subtitle="" />
-        )}
-        {!loadingAll && allBooks.length === 0 && (
-          <p>No hay libros disponibles.</p>
-        )}
-      </section>
-
-      {/* Secciones */}
-      {sectionsData.map(({ type, loading, error }) => (
-        <section
-          key={type}
-          className="w-full grid gap-6 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl"
-        >
+      {/* 🔎 Resultados de búsqueda */}
+      {showFiltered ? (
+        <section className="w-full grid gap-6 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl">
           <h2 className="text-2xl font-bold text-emerald-400 mb-4">
-            {type
-              .replace(/([A-Z])/g, " $1")
-              .replace(/^./, (s) => s.toUpperCase())}
+            Resultados de búsqueda
           </h2>
 
-          {loading && <p>Cargando libros de {type}...</p>}
-          {error && <p>Error: {error}</p>}
+          {loadingAll && <p>Cargando libros...</p>}
+          {errorAll && <p>Error: {errorAll}</p>}
 
-          {!loading && !error && (
-            <ProductSection
-              section={type as SectionEnum}
-              title=""
-              subtitle=""
-            />
+          {!loadingAll && filteredBooks?.length > 0 && (
+            <ProductSection title="" subtitle="" books={filteredBooks} />
+          )}
+
+          {!loadingAll && filteredBooks?.length === 0 && (
+            <p className="text-gray-400 text-center">
+              No se encontraron resultados para "{searchTerm}".
+            </p>
           )}
         </section>
-      ))}
+      ) : (
+        <>
+          {/* 🧾 Todos los libros */}
+          <section className="w-full grid gap-6 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl">
+            <h2 className="text-2xl font-bold text-emerald-400 mb-4">
+              Todos los libros
+            </h2>
+            {loadingAll && <p>Cargando libros...</p>}
+            {errorAll && <p>Error: {errorAll}</p>}
+            {!loadingAll && allBooks.length > 0 && (
+              <ProductSection title="" subtitle="" />
+            )}
+            {!loadingAll && allBooks.length === 0 && (
+              <p>No hay libros disponibles.</p>
+            )}
+          </section>
 
-      {/* Cards promocionales */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-6 md:px-8 max-w-7xl w-full mb-20">
-        {MAIN_SECTIONS.map((item) => (
-          <SectionCard
-            key={item.type}
-            {...item}
-            image=""
-            buttonText=""
-            onClick={() => navigate(`/${item.type.toLowerCase()}`)}
-          />
-        ))}
-      </section>
+          {/* 📚 Secciones */}
+          {sectionsData.map(({ type, loading, error }) => (
+            <section
+              key={type}
+              className="w-full grid gap-6 mt-10 px-4 sm:px-6 md:px-8 max-w-7xl"
+            >
+              <h2 className="text-2xl font-bold text-emerald-400 mb-4">
+                {type
+                  .replace(/([A-Z])/g, " $1")
+                  .replace(/^./, (s) => s.toUpperCase())}
+              </h2>
+
+              {loading && <p>Cargando libros de {type}...</p>}
+              {error && <p>Error: {error}</p>}
+
+              {!loading && !error && (
+                <ProductSection
+                  section={type as SectionEnum}
+                  title=""
+                  subtitle=""
+                />
+              )}
+            </section>
+          ))}
+
+          {/* 🧩 Cards promocionales */}
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-6 md:px-8 max-w-7xl w-full mb-20">
+            {MAIN_SECTIONS.map((item) => (
+              <SectionCard
+                key={item.type}
+                {...item}
+                image=""
+                buttonText=""
+                onClick={() => navigate(`/${item.type.toLowerCase()}`)}
+              />
+            ))}
+          </section>
+        </>
+      )}
 
       {/* Footer */}
       <footer className="grid place-items-center w-full bg-slate-800 py-6 text-gray-400 text-xs sm:text-sm">

@@ -8,14 +8,15 @@ import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 import { useUserStore } from "../../store/useUserStore";
 import { UserRole } from "../../pages/login/Logintypes";
 import { useAuthStorage } from "@/hooks/useAuthCookies";
-
+import { useSearchStore } from "@/store/useSearchStore";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const { role, _hasHydrated } = useUserStore();
   const { getAuth } = useAuthStorage();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const { searchTerm, setSearchTerm } = useSearchStore();
 
   if (!_hasHydrated) return null;
 
@@ -24,6 +25,9 @@ const Header: React.FC = () => {
     navigate(isAuthorized ? "/personal-area" : "/login");
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
   return (
     <header className="sticky top-0 z-50 w-full bg-gradient-to-r from-zinc-950 via-slate-900 to-zinc-950 text-gray-300 shadow-lg py-3">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
@@ -85,6 +89,8 @@ const Header: React.FC = () => {
               <input
                 type="search"
                 placeholder="Busca por título, autor, género, ISBN..."
+                value={searchTerm}
+                onChange={handleSearchChange}
                 className="w-fix px-4 py-2 border rounded-full focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm text-white"
               />
             </div>
