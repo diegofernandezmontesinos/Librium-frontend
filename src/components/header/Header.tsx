@@ -10,11 +10,13 @@ import { UserRole } from "../../pages/login/Logintypes";
 import { useAuthStorage } from "@/hooks/useAuthCookies";
 import { useSearchStore } from "@/store/useSearchStore";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useCart } from "react-use-cart";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const { role, _hasHydrated } = useUserStore();
   const { getAuth } = useAuthStorage();
+  const { items } = useCart();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const { searchTerm, setSearchTerm } = useSearchStore();
 
@@ -68,9 +70,11 @@ const Header: React.FC = () => {
               className="relative p-2 rounded-full hover:bg-gray-800 transition"
             >
               <ShoppingCar className="h-6 w-6 text-gray-300" />
-              <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-bold text-white bg-indigo-600 rounded-full">
-                3
-              </span>
+              {items.length > 0 && (
+                <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-bold text-white bg-indigo-600 rounded-full">
+                  {items.reduce((total, item) => total + item.quantity, 0)}
+                </span>
+              )}
             </button>
           </div>
 
@@ -125,10 +129,12 @@ const Header: React.FC = () => {
                 onClick={() => navigate("/my-cart")}
                 className="relative flex items-center px-4 py-2 text-sm rounded-full hover:bg-indigo-500 hover:text-white transition"
               >
-                <ShoppingCar className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-bold text-white bg-indigo-600  rounded-full">
-                  3
-                </span>
+                <ShoppingCar className="h-6 w-6 text-gray-300" />
+                {items.length > 0 && (
+                  <span className="absolute -top-1 -right-1 px-2 py-0.5 text-xs font-bold text-white bg-indigo-600 rounded-full">
+                    {items.reduce((total, item) => total + item.quantity, 0)}
+                  </span>
+                )}
               </button>
             </div>
           </div>
