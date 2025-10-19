@@ -11,6 +11,7 @@ export interface Book {
   image_url?: string;
   price?: number;
   cover_url?: string;
+  section?: SectionEnum;
 }
 
 export const BookService = {

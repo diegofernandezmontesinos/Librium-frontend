@@ -1,6 +1,6 @@
 import { Book, BookService } from "@/services/booksService";
+import { SectionEnum } from "@/utils/global/globalTypes";
 import { useEffect, useState } from "react";
-import { BookSection } from "./BooksTypes";
 
 export const [books, setBooks] = useState<Book[]>([]);
 export const [file, setFile] = useState<File | null>(null);
@@ -9,14 +9,14 @@ export const [editingId, setEditingId] = useState<number | null>(null);
 export const [loading, setLoading] = useState(false);
 export const [error, setError] = useState<string | null>(null);
 
-export const [form, setForm] = useState<Book & { section?: BookSection }>({
+export const [form, setForm] = useState<Book & { section?: SectionEnum }>({
   title: "",
   author: "",
   description: "",
   year: undefined,
   image_url: "",
   section: undefined,
-  price:0
+  price: 0,
 });
 
 useEffect(() => {
@@ -68,7 +68,7 @@ export const handleSubmit = async (e: React.FormEvent) => {
       description: "",
       year: undefined,
       image_url: "",
-      price:0
+      price: 0,
     });
     setFile(null);
     setPreview(null);

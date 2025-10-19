@@ -1,5 +1,4 @@
 import React from "react";
-import { BookSection } from "./BooksTypes";
 import {
   books,
   editingId,
@@ -11,6 +10,7 @@ import {
   preview,
   setForm,
 } from "./BooksPageLogic";
+import { SectionEnum } from "@/utils/global/globalTypes";
 
 const BooksPage: React.FC = () => {
   return (
@@ -66,13 +66,13 @@ const BooksPage: React.FC = () => {
             <select
               value={form.section || ""}
               onChange={(e) =>
-                setForm({ ...form, section: e.target.value as BookSection })
+                setForm({ ...form, section: e.target.value as SectionEnum })
               }
               className="border rounded-lg p-3 focus:ring-2 focus:ring-indigo-500"
               required
             >
               <option value="">Select Section</option>
-              {Object.values(BookSection).map((sec) => (
+              {Object.values(SectionEnum).map((sec) => (
                 <option key={sec} value={sec}>
                   {sec}
                 </option>

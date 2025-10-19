@@ -1,3 +1,4 @@
+import { Book } from "@/services/booksService";
 import { SectionEnum } from "@/utils/global/globalTypes";
 
 export interface ProductSectionProps {
@@ -5,4 +6,5 @@ export interface ProductSectionProps {
   title: string;
   subtitle?: string;
   bgColor?: string;
+  books?: Book[]
 }

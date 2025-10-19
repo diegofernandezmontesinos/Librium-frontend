@@ -40,11 +40,13 @@ const Home = () => {
   // 🔎 Filtrado en tiempo real
   const filteredBooks = allBooks?.filter((book) => {
     const term = searchTerm.toLowerCase();
-    return (
+    if (
       book.title.toLowerCase().includes(term) ||
-      book.author.toLowerCase().includes(term) ||
-      book.section?.toLowerCase().includes(term)
-    );
+      book.author.toLowerCase().includes(term)
+    ) {
+      console.log("book matched:", book.title);
+      return book;
+    }
   });
 
   const showFiltered = searchTerm.trim().length > 0;
