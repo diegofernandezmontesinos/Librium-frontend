@@ -1,18 +1,25 @@
 import React from "react";
-import {
-  books,
-  editingId,
-  form,
-  handleDelete,
-  handleEdit,
-  handleFileChange,
-  handleSubmit,
-  preview,
-  setForm,
-} from "./BooksPageLogic";
 import { SectionEnum } from "@/utils/global/globalTypes";
+import { useBooksPageLogic } from "./BooksPageLogic";
 
 const BooksPage: React.FC = () => {
+  const {
+    books,
+    form,
+    loading,
+    error,
+    setForm,
+    editingId,
+    handleFileChange,
+    handleSubmit,
+    handleEdit,
+    handleDelete,
+    preview,
+    getImageSrc,
+  } = useBooksPageLogic();
+
+  if (loading) return <p>Cargando...</p>;
+  if (error) return <p>{error}</p>;
   return (
     <div className="min-h-screen bg-slate-900 text-white py-10 px-6">
       <div className="max-w-6xl mx-auto">
@@ -127,13 +134,12 @@ const BooksPage: React.FC = () => {
               key={book.id}
               className="bg-white rounded-lg p-5 shadow-md text-gray-900"
             >
-              {book.image_url && (
-                <img
-                  src={`http://localhost:4000/${book.image_url}`}
-                  alt={book.title}
-                  className="w-full h-48 object-cover rounded mb-4"
-                />
-              )}
+              <img
+                src={getImageSrc(book.image_url)}
+                alt={book.title}
+                className="w-full h-48 object-cover rounded mb-4"
+              />
+
               <h3 className="font-bold text-lg">{book.title}</h3>
               <p className="text-sm text-gray-600">{book.author}</p>
               <p className="mt-2 text-sm">{book.description}</p>

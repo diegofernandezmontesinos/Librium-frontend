@@ -6,7 +6,7 @@ The app is a clone of a online library
 
 # To run the app.
 
-go to Librium folder, and run in the terminal "docker compose up"
+go to Librium folder, and run in the terminal "docker compose up", open frontend in localhost:3000 and backend run in localhost:4000
 
 
 # for UI: 

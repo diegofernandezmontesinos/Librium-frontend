@@ -1,10 +1,10 @@
-// src/pages/home/Home.tsx
 import { useNavigate } from "react-router-dom";
 import SectionCard from "@/components/sectionCard/SectionCard";
 import { ProductSection } from "@/components/productsSections";
 import { SectionEnum } from "@/utils/global/globalTypes";
 import { useBooks } from "@/hooks/useBooks";
 import { useSearchStore } from "@/store/useSearchStore";
+import { useTranslation } from "react-i18next";
 
 const MAIN_SECTIONS = [
   {
@@ -27,6 +27,7 @@ const MAIN_SECTIONS = [
 const Home = () => {
   const navigate = useNavigate();
   const { searchTerm } = useSearchStore();
+  const { t } = useTranslation();
 
   // Todos los libros
   const { books: allBooks, loading: loadingAll, error: errorAll } = useBooks();
@@ -62,11 +63,10 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-slate-900/50 flex flex-col justify-center items-center text-center px-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-emerald-400 mb-3">
-            Bienvenido a tu universo literario
+            {t("home.title")}
           </h1>
           <p className="text-gray-200 text-sm sm:text-base md:text-lg max-w-2xl">
-            Explora historias, autores y mundos que solo los libros pueden
-            ofrecerte.
+            {t("home.subtitle")}
           </p>
         </div>
       </section>

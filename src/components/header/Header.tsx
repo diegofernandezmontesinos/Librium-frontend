@@ -105,9 +105,6 @@ const Header: React.FC = () => {
                 <GeolocationIcon className="mr-2 h-5 w-5" />
                 <span className="hidden sm:inline">Librerías</span>
               </button>
-
-              <LanguageSwitcher />
-
               <button
                 onClick={handleAccountClick}
                 className="flex items-center px-4 py-2 text-sm  rounded-full hover:bg-indigo-500 hover:text-white transition"

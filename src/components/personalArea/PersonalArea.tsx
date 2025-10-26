@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStorage } from "@/hooks/useAuthCookies";
+import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 interface User {
   id: number;
@@ -15,6 +17,7 @@ const PersonalArea: React.FC = () => {
   const navigate = useNavigate();
   const { getAuth, removeAuth } = useAuthStorage();
   const [user, setUser] = useState<User | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const isAuthorized = getAuth();
@@ -48,7 +51,9 @@ const PersonalArea: React.FC = () => {
           alt={user.name}
           className="w-28 h-28 rounded-full mb-4 border-4 border-emerald-500"
         />
-        <h1 className="text-2xl font-bold text-emerald-400 mb-1">{user.name}</h1>
+        <h1 className="text-2xl font-bold text-emerald-400 mb-1">
+          {user.name}
+        </h1>
         <p className="text-gray-300">{user.email}</p>
         <p className="text-sm text-gray-400 mt-1">{user.role}</p>
 
@@ -59,7 +64,21 @@ const PersonalArea: React.FC = () => {
             <span className="font-semibold">ID:</span> {user.id}
           </p>
           <p>
-            <span className="font-semibold">Miembro desde:</span> {user.joinedAt}
+            <span className="font-semibold">
+              {t("personalArea.joinedDate")}
+            </span>{" "}
+            {user.joinedAt}
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-4 w-full text-left text-gray-300 text-sm sm:text-base">
+          <p>
+            <span className="font-semibold">
+              {" "}
+              {t("personalArea.changeLanguage")}
+            </span>
+          </p>
+          <p>
+            <LanguageSwitcher />
           </p>
         </div>
 
@@ -67,7 +86,7 @@ const PersonalArea: React.FC = () => {
           onClick={handleLogout}
           className="mt-6 w-full bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
         >
-          Cerrar sesión
+          {t("personalArea.logout")}
         </button>
       </section>
     </main>

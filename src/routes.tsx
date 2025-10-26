@@ -105,9 +105,9 @@ const router = createBrowserRouter([
       {
         element: <ProtectedRoutes />,
         children: [
-          { path: "/books-page", element: <BooksPage /> },
-          { path: "/my-cart", element: <CartSummary /> },
-          { path: "/personal-area", element: <PersonalArea /> },
+          { path: "books-page", element: <BooksPage /> },
+          { path: "my-cart", element: <CartSummary /> },
+          { path: "personal-area", element: <PersonalArea /> },
         ],
       },
       // FALLBACK

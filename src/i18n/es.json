@@ -1,5 +1,9 @@
 {
   "welcome": "¡Bienvenido a la aplicación!",
+  "home": {
+    "title": " Bienvenido a tu universo literario",
+    "subtitle": "Explora historias, autores y mundos que solo los libros pueden ofrecerte."
+  },
   "login": {
     "usernamePlaceholder": "Nombre de usuario",
     "passwordPlaceholder": "Contraseña",
@@ -20,5 +24,10 @@
   "footer": {
     "copyright": "Este sitio es un proyecto de demostración. Diseñado para una experiencia literaria disruptiva. Proyecto personal realizado por Diego Fernández Montesinos",
     "rigthsReserved": "Todos los derechos reservados."
+  },
+  "personalArea": {
+    "joinedDate": "Miembro desde:",
+    "changeLanguage": "Cambiar idioma:",
+    "logout": "Cerrar sesión"
   }
 }

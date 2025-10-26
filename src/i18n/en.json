@@ -1,5 +1,9 @@
 {
   "welcome": "Welcome to the app!",
+  "home": {
+    "title": "Welcome to your literary universe",
+    "subtitle": "Explore stories, authors, and worlds that only books can offer you."
+  },
   "login": {
     "usernamePlaceholder": "Username",
     "passwordPlaceholder": "Password",
@@ -20,5 +24,10 @@
   "footer": {
     "copyright": "This site is a demonstration project. Designed for a disruptive literary experience. Personal project created by Diego Fernández Montesinos.",
     "rigthsReserved": "All rights reserved."
+  },
+  "personalArea": {
+    "joinedDate": "Member since:",
+    "changeLanguage": "Change language:",
+    "logout": "Logout"
   }
 }
