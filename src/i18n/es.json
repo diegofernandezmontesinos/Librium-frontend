@@ -6,7 +6,7 @@
     "usernameError": "Hubo un error",
     "passwordError": "Hubo un error",
     "submitButton": "Iniciar sesión",
-    "footerNote":"¿No tienes una cuenta? Regístrate"
+    "footerNote": "¿No tienes una cuenta? Regístrate"
   },
 
   "register": {
@@ -16,5 +16,9 @@
     "usernameError": "Debe tener al menos 4 caracteres",
     "passwordError": "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial",
     "submitButton": "Registrar"
+  },
+  "footer": {
+    "copyright": "Este sitio es un proyecto de demostración. Diseñado para una experiencia literaria disruptiva. Proyecto personal realizado por Diego Fernández Montesinos",
+    "rigthsReserved": "Todos los derechos reservados."
   }
 }

@@ -1,15 +1,19 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 // Datos de ejemplo para la navegación del footer
 const FOOTER_LINKS = [
-  { title: "Acerca de", url: "/https://www.linkedin.com/in/diego-fernandez-montesinos/" },
+  {
+    title: "Acerca de",
+    url: "/https://www.linkedin.com/in/diego-fernandez-montesinos/",
+  },
   { title: "Contacto", url: "/contact" },
   { title: "Términos", url: "/terms" },
   { title: "Privacidad", url: "/privacy" },
 ];
 
 const Footer: React.FC = () => {
-  // La lógica del contador y el useState se eliminan por ser incoherentes con el propósito del footer.
+  const { t } = useTranslation();
 
   return (
     <footer
@@ -35,22 +39,16 @@ const Footer: React.FC = () => {
 
           {/* Columna de Logo/Marca */}
           <div className="text-center md:text-right">
-            <h3 className="text-lg font-bold text-lavanda-400">
-              Librium
-            </h3>
+            <h3 className="text-lg font-bold text-lavanda-400">Librium</h3>
             <p className="text-xs mt-1">
-              © {new Date().getFullYear()} Todos los derechos reservados.
+              © {new Date().getFullYear()} {t("footer.rigthsReserved")}
             </p>
           </div>
         </div>
 
         {/* Pequeña nota (el mensaje original, pero coherente) */}
         <div className="mt-8 pt-4 border-t border-gray-700 text-center text-xs text-gray-600">
-          <p>
-            Este sitio es un proyecto de demostración. Diseñado para una
-            experiencia literaria disruptiva. Proyecto personal realizado por
-            Diego Fernández Montesinos
-          </p>
+          <p>{t("footer.copyright")}</p>
         </div>
       </div>
     </footer>

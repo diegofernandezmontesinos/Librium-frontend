@@ -6,7 +6,7 @@
     "usernameError": "There was an error",
     "passwordError": "There was an error",
     "submitButton": "Log In",
-    "footerNote":"Need an account? Sign up"
+    "footerNote": "Need an account? Sign up"
   },
 
   "register": {
@@ -16,5 +16,9 @@
     "usernameError": "Username must be at least 4 characters long",
     "passwordError": "Password must be at least 8 characters long, contain an uppercase letter a number, and a special character",
     "submitButton": "Sign Up"
+  },
+  "footer": {
+    "copyright": "This site is a demonstration project. Designed for a disruptive literary experience. Personal project created by Diego Fernández Montesinos.",
+    "rigthsReserved": "All rights reserved."
   }
 }
