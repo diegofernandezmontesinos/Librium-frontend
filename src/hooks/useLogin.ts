@@ -24,9 +24,18 @@ export function useLogin() {
       setLoading(true);
       setError(null);
 
-      const response = await AuthService.login(username, password, captchaToken);
+      const response = await AuthService.login(
+        username,
+        password,
+        captchaToken
+      );
 
-      setAuth(true);
+      setAuth({
+        token: response.data.token,
+        username: response.data.username,
+        role: response.data.role,
+      });
+
       const { username: userName, role, id } = response;
       setUser(id, userName, role as UserRole);
 

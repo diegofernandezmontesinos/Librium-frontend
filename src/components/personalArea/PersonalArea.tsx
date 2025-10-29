@@ -1,47 +1,24 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStorage } from "@/hooks/useAuthCookies";
+import { useUserProfile } from "./hooks/useUserProfile";
+import EditProfileForm from "./component/EditProfileForm";
 import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  avatar: string;
-  joinedAt: string;
-  role: string;
-}
-
 const PersonalArea: React.FC = () => {
   const navigate = useNavigate();
-  const { getAuth, removeAuth } = useAuthStorage();
-  const [user, setUser] = useState<User | null>(null);
+  const { removeAuth } = useAuthStorage();
+  const { user, setUser, loading, error } = useUserProfile();
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const isAuthorized = getAuth();
-    if (!isAuthorized) {
-      navigate("/login", { replace: true });
-    } else {
-      // Mock temporal — luego reemplazaremos por fetch desde backend
-      setUser({
-        id: 1,
-        name: "María López",
-        email: "maria.lopez@example.com",
-        avatar: "https://i.pravatar.cc/150?img=47",
-        joinedAt: "2023-04-12",
-        role: "Usuario Premium",
-      });
-    }
-  }, [getAuth, navigate]);
 
   const handleLogout = () => {
     removeAuth();
     navigate("/login");
   };
 
-  if (!user) return null;
+  if (loading) return <p className="text-white">Cargando perfil...</p>;
+  if (error || !user)
+    return <p className="text-red-500">Error cargando perfil.</p>;
 
   return (
     <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center p-6">
@@ -59,27 +36,13 @@ const PersonalArea: React.FC = () => {
 
         <hr className="my-4 border-gray-600 w-full" />
 
-        <div className="grid grid-cols-2 gap-4 w-full text-left text-gray-300 text-sm sm:text-base">
-          <p>
-            <span className="font-semibold">ID:</span> {user.id}
+        <EditProfileForm user={user} onUserUpdate={setUser} />
+
+        <div className="mt-6 w-full text-left text-gray-300 text-sm sm:text-base">
+          <p className="font-semibold mb-1">
+            {t("personalArea.changeLanguage")}
           </p>
-          <p>
-            <span className="font-semibold">
-              {t("personalArea.joinedDate")}
-            </span>{" "}
-            {user.joinedAt}
-          </p>
-        </div>
-        <div className="grid grid-cols-2 gap-4 w-full text-left text-gray-300 text-sm sm:text-base">
-          <p>
-            <span className="font-semibold">
-              {" "}
-              {t("personalArea.changeLanguage")}
-            </span>
-          </p>
-          <p>
-            <LanguageSwitcher />
-          </p>
+          <LanguageSwitcher />
         </div>
 
         <button

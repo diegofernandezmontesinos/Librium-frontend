@@ -4,7 +4,6 @@ import GeolocationIcon from "../../assets/icons/geolocation";
 import PersonFill from "../../assets/icons/personFill";
 import ShoppingCar from "../../assets/icons/shoppingCar";
 import MenuBar from "../menuBar/MenuBar";
-import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 import { useUserStore } from "../../store/useUserStore";
 import { UserRole } from "../../pages/login/Logintypes";
 import { useAuthStorage } from "@/hooks/useAuthCookies";

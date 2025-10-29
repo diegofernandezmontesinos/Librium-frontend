@@ -1,25 +1,33 @@
 import { useCallback } from "react";
 import { decrypt, encrypt } from "@/utils/encrypter/Encrypter";
 
-const STORAGE_KEY = "isAuthorized";
+const STORAGE_KEY = "auth";
+
+interface AuthData {
+  token: string;
+  username?: string;
+  role?: string;
+  autenticated?: boolean;
+}
 
 export function useAuthStorage() {
-  const setAuth = useCallback((value: boolean) => {
-    const encryptedValue = encrypt(value);
+  const setAuth = useCallback((authData: AuthData) => {
+    const encryptedValue = encrypt(JSON.stringify(authData));
     if (encryptedValue !== undefined) {
       localStorage.setItem(STORAGE_KEY, encryptedValue);
     }
   }, []);
 
-  const getAuth = useCallback((): boolean => {
+  const getAuth = useCallback((): AuthData | null => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return false;
+    if (!stored) return null;
 
-    const decryptedValue = decrypt(stored);
-    if (decryptedValue === "true") return true;
-    if (decryptedValue === "false") return false;
-
-    return false;
+    try {
+      const decryptedValue = decrypt(stored);
+      return JSON.parse(decryptedValue) as AuthData;
+    } catch {
+      return null;
+    }
   }, []);
 
   const removeAuth = useCallback(() => {
